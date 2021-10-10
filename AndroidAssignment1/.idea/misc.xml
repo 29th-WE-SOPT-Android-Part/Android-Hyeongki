@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/khk21/AndroidStudioProjects/Android-Hyeongki/AndroidAssignment1/app/src/main/res/layout/activity_home.xml" value="0.5536458333333333" />
+        <entry key="..\:/Users/khk21/AndroidStudioProjects/AndroidAssignment1/app/src/main/res/drawable/button_radius.xml" value="0.4270833333333333" />
+        <entry key="..\:/Users/khk21/AndroidStudioProjects/AndroidAssignment1/app/src/main/res/drawable/input_radius.xml" value="0.4270833333333333" />
+        <entry key="..\:/Users/khk21/AndroidStudioProjects/AndroidAssignment1/app/src/main/res/drawable/square_background_border_black.xml" value="0.4270833333333333" />
+        <entry key="..\:/Users/khk21/AndroidStudioProjects/AndroidAssignment1/app/src/main/res/layout/activity_home.xml" value="0.5" />
+        <entry key="..\:/Users/khk21/AndroidStudioProjects/AndroidAssignment1/app/src/main/res/layout/activity_main.xml" value="0.5536458333333333" />
+        <entry key="..\:/Users/khk21/AndroidStudioProjects/AndroidAssignment1/app/src/main/res/layout/activity_second.xml" value="0.490036231884058" />
+        <entry key="..\:/Users/khk21/AndroidStudioProjects/AndroidAssignment1/app/src/main/res/layout/activity_sign_in.xml" value="0.365625" />
+        <entry key="..\:/Users/khk21/AndroidStudioProjects/AndroidAssignment1/app/src/main/res/layout/activity_sign_up.xml" value="0.4109375" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/AndroidAssignment1/app/src/main/res/layout/activity_main.xml" value="0.176" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1" />
+      </ProjectState>
+    </option>
+  </component>
+</project>
