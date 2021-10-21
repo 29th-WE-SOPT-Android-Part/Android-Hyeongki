@@ -7,19 +7,30 @@ import android.os.Bundle
 import org.sopt.androidassignment1.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
-
     lateinit var binding : ActivityHomeBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
 
-        binding.btnGithub.setOnClickListener{
-            val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse(getString(R.string.github_address))
-            startActivity(intent)
-        }
+        initFragmentTransactionEvent()
 
         setContentView(binding.root)
     }
+
+    private fun initFragmentTransactionEvent(){
+        val fragment1 = FollowerFragment()
+        val fragment2 = RepositoryFragment()
+
+        supportFragmentManager.beginTransaction().add(R.id.home_fragment_container, fragment1).commit()
+
+        binding.btnFollower.setOnClickListener {
+            supportFragmentManager.beginTransaction().replace(R.id.home_fragment_container, fragment1).commit()
+        }
+        binding.btnRepository.setOnClickListener{
+            supportFragmentManager.beginTransaction().replace(R.id.home_fragment_container, fragment2).commit()
+        }
+    }
+
 }
