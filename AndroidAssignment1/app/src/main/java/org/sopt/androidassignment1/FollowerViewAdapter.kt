@@ -44,7 +44,7 @@ class FollowerViewAdapter: RecyclerView.Adapter<FollowerViewAdapter.FollowerView
         datalist.removeAt(from_position)
         datalist.add(to_position, item)
 
-        notifyDataSetChanged()
+        notifyItemMoved(from_position, to_position)
         return true
     }
 
