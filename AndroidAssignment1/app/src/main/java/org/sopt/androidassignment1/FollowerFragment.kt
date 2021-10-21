@@ -10,7 +10,7 @@ import org.sopt.androidassignment1.databinding.FragmentFollowerBinding
 class FollowerFragment : Fragment() {
     private var _binding: FragmentFollowerBinding? = null
     private val binding get() = _binding!!
-    private lateinit var followerAdapter: FollowerAdapter
+    private lateinit var followerViewAdapter: FollowerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,19 +29,19 @@ class FollowerFragment : Fragment() {
     }
 
     private fun initAdapter(){
-        followerAdapter = FollowerAdapter()
+        followerViewAdapter = FollowerViewAdapter()
 
-        binding.rvFollower.adapter = followerAdapter
+        binding.rvFollower.adapter = followerViewAdapter
 
-        followerAdapter.followerlist.addAll(
+        followerViewAdapter.datalist.addAll(
             listOf(
-                FollowerData("김형기", "YB 29기 김형기"),
-                FollowerData("홍길동", "ㅇㄹ"),
-                FollowerData("이정재", "쌍문동"),
-                FollowerData("멋쟁이", "ㅇㄴㄹ")
+                PairData("김형기", "YB 29기 김형기"),
+                PairData("홍길동", "ㅇㄹ"),
+                PairData("이정재", "쌍문동"),
+                PairData("멋쟁이", "ㅇㄴㄹ")
             )
         )
-        followerAdapter.notifyDataSetChanged()
+        followerViewAdapter.notifyDataSetChanged()
     }
 
 }

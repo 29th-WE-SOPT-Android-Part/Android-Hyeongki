@@ -1,6 +1,6 @@
 package org.sopt.androidassignment1
 
-class FollowerData (
+class PairData (
     val name: String,
     val introduction: String
 )
