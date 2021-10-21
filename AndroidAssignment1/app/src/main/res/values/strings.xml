@@ -4,4 +4,9 @@
     <string name="github_address">https://github.com/gimangi</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="detail_khk">상도역 근처에 살고 있는 23살 김형기입니다.\n만나서 반갑습니다.\n햄버거가 먹고 싶습니다.\n김형기김형기김형기</string>
+    <string name="detail_kot">제 이름은 코틀린입니다.\n코틀린은 섬 이름입니다.\n젯브레인사에서 만들었습니다.</string>
+    <string name="detail_jav">저는 자바입니다.\n코틀린과 친합니다.\n가비지 다 정리해줄게요.</string>
+    <string name="detail_and">안드로이드입니다.\n안드로이드안드로이드\n안드안드안드안드</string>
+    <string name="detail_alg">알고알고알고\n유튜브알고리즘\nalgorithm\n공부하자</string>
 </resources>
