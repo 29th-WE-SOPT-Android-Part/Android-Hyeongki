@@ -1,12 +1,16 @@
-## 🟢LEVEL 1
+## 1️⃣Week 1
 
-### SignInActivity
+
+
+### 🟢LEVEL 1
+
+#### ◻SignInActivity
 
 <img src="https://user-images.githubusercontent.com/37872134/136694713-a5870bc8-8285-4559-9250-2535db47dd5c.png" width="270" height="570" /><img src="https://user-images.githubusercontent.com/37872134/136694717-5b9ddcb7-f35b-481f-ac0e-21114f16204e.png" width="270" height="570" /><img src="https://user-images.githubusercontent.com/37872134/136694719-4d5f6ad8-c4c1-4195-b645-6a3b8c4a53d3.png" width="270" height="570" /><img src="https://user-images.githubusercontent.com/37872134/136694728-94831de3-aff2-460b-a259-18bf005a4389.png" width="270" height="570" />
 
 
 
-- ##### 아이디 입력
+- ###### 아이디 입력
 
   ```xml
       <EditText
@@ -32,7 +36,7 @@
 
   
 
-- ##### 비밀번호 입력
+- ###### 비밀번호 입력
 
   ```xml
   	<EditText
@@ -56,7 +60,7 @@
 
     
 
-- ##### 로그인 버튼
+- ###### 로그인 버튼
 
   ```kotlin
           binding.btnSignin.setOnClickListener{
@@ -82,7 +86,7 @@
 
 
 
-- ##### 회원가입 버튼
+- ###### 회원가입 버튼
 
   ```kotlin
           binding.btnSignup.setOnClickListener{
@@ -101,13 +105,13 @@
 
 
 
-### SignUpActivity
+#### ◻SignUpActivity
 
 <img src="https://user-images.githubusercontent.com/37872134/136694762-3d60017a-10eb-4b4d-baef-1325ea5f0b32.png" width="270" height="570" /><img src="https://user-images.githubusercontent.com/37872134/136694763-38ffd3e5-06f2-47bd-a5fb-cce0126694f8.png" width="270" height="570" /><img src="https://user-images.githubusercontent.com/37872134/136694765-8b68f2fd-f64f-440f-a4d1-0bd000ca7d0b.png" width="270" height="570" /><img src="https://user-images.githubusercontent.com/37872134/136694768-75fc4269-5bcf-4820-a6d6-37dd1d7bd058.png" width="270" height="570" />
 
 
 
-- ##### 이름 입력
+- ###### 이름 입력
 
   ```xml
   	<EditText
@@ -131,7 +135,7 @@
 
     
 
-- ##### 아이디 입력
+- ###### 아이디 입력
 
   ```xml
       <EditText
@@ -155,7 +159,7 @@
 
     
 
-- ##### 비밀번호 입력
+- ###### 비밀번호 입력
 
   ```xml
       <EditText
@@ -179,7 +183,7 @@
 
     
 
-- ##### 회원가입 완료 버튼
+- ###### 회원가입 완료 버튼
 
   ```kotlin
           binding.btnSignupSubmit.setOnClickListener{
@@ -209,13 +213,13 @@
 
 ---
 
-### HomeActivity
+#### ◻HomeActivity
 
 <img src="https://user-images.githubusercontent.com/37872134/136694803-1d36865f-3c39-47cf-a06a-1bfe0dca1904.png" width="270" height="570" />
 
 
 
-- ##### 프로필 사진
+- ###### 프로필 사진
 
   ```xml
       <ImageView
@@ -245,17 +249,15 @@
 
 
 
-## 🟢LEVEL 2
+### 🟢LEVEL 2
 
-
-
-### GitHub 주소 이동
+#### ◻GitHub 주소 이동
 
 <img src="https://user-images.githubusercontent.com/37872134/136694803-1d36865f-3c39-47cf-a06a-1bfe0dca1904.png" width="270" height="570" /><img src="https://user-images.githubusercontent.com/37872134/136701076-6037f257-20bd-4a50-89ff-750b6181433e.png" width="270" height="570" />
 
 
 
-- ##### 깃허브 버튼
+- ###### 깃허브 버튼
 
   ```kotlin
           binding.btnGithub.setOnClickListener{
@@ -269,12 +271,12 @@
 
 
 
-- ##### 명시적 인텐트 (Explicit Intent)
+- ###### 명시적 인텐트 (Explicit Intent)
 
   - 인텐트에 클래스 객체나 컴포넌트 이름을 지정하여 호출할 대상을 확실히 알 수 있는 경우
   - 특정 컴포넌트가 액티비티가 명확하게 실행된다
 
-- ##### 암시적 인텐트 (Implicit Intent)
+- ###### 암시적 인텐트 (Implicit Intent)
 
   - 인텐트의 호출할 대상이 달라질 수 있는 경우에 사용
 
@@ -283,13 +285,13 @@
 
 
 
-### ScrollView
+#### ◻ScrollView
 
 <img src="https://user-images.githubusercontent.com/37872134/136701100-6c0e406c-f30b-404d-ab91-f50165d94e19.png" width="270" height="570" />
 
 
 
-- ##### 스크롤뷰를 이용한 자기소개
+- ###### 스크롤뷰를 이용한 자기소개
 
   ```xml
       <ScrollView
