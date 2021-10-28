@@ -1,10 +1,12 @@
-# 🟢LEVEL 1
+## Week 2
+
+### 🟢LEVEL 1
 
 <img src="https://user-images.githubusercontent.com/37872134/138349204-03c0394c-1059-4ce2-8afe-e3a9c690cba3.gif"  width="270" height="570"/>
 
 
 
-## 🟦PairData
+#### 🔹PairData
 
 ```kotlin
 class PairData (
@@ -18,18 +20,18 @@ class PairData (
 
 
 
-## 🟦FollowerFragment
+#### 🔹FollowerFragment
 
 - 팔로워 목록을 보여주는 프래그먼트로, HomeActivity 화면의 일부를 구성한다.
 - 리사이클뷰를 이용해 여러 팔로워의 리스트를 보여준다.
 
 
 
-### item_list_follower.xml 레이아웃
+##### item_list_follower.xml 레이아웃
 
 ---
 
-- ##### 리사이클 될 대상인 팔로워 한 명을 표시하는 뷰
+- ###### 리사이클 될 대상인 팔로워 한 명을 표시하는 뷰
 
   ```xml
       <TextView
@@ -67,11 +69,11 @@ class PairData (
 
 
 
-### fragment_follower.xml 레이아웃
+##### fragment_follower.xml 레이아웃
 
 ---
 
-- ##### 팔로워 리스트를 담을 리사이클뷰
+- ###### 팔로워 리스트를 담을 리사이클뷰
 
   ```xml
       <androidx.recyclerview.widget.RecyclerView
@@ -89,11 +91,11 @@ class PairData (
 
 
 
-### FollowerFragment.kt 코드
+##### FollowerFragment.kt 코드
 
 ---
 
-- ##### 프래그먼트 뷰바인딩 변수
+- ###### 프래그먼트 뷰바인딩 변수
 
   ```kotlin
       private var _binding: FragmentFollowerBinding? = null
@@ -103,7 +105,7 @@ class PairData (
   - _binding을 nullable 변수로 선언하고, null로 초기화하였다.
   - binding을 Not null로 단언하였다.
 
-- ##### onCreateView(LayoutInflater, ViewGroup?, Bundle?)
+- ###### onCreateView(LayoutInflater, ViewGroup?, Bundle?)
 
   ```kotlin
       override fun onCreateView(
@@ -121,7 +123,7 @@ class PairData (
   - layoutInflater를 이용해 프래그먼트의 view 객체를 만들고, 뷰 바인딩을 한다.
   - 뷰 어댑터 객체를 생성하고, 바인딩을 통해 어댑터를 적용하는 메소드인 initAdapter()를 호출한다. (아래 기술되어 있다.)
 
-- ##### initAdapter()
+- ###### initAdapter()
 
   ```kotlin
       private fun initAdapter(){
@@ -146,7 +148,7 @@ class PairData (
   - 바인딩을 통해 리사이클뷰에 어댑터를 연결한다.
   - 뷰어댑터에 데이터를 추가시킨 후 데이터가 변경되었음을 알린다.
 
-- ##### onDestroyView()
+- ###### onDestroyView()
 
   ```kotlin
       override fun onDestroyView() {
@@ -159,13 +161,13 @@ class PairData (
 
 
 
-### FollowerViewAdapter.kt 코드
+##### FollowerViewAdapter.kt 코드
 
 ​	Adapter\<ViewHolder\>를 상속하여 리사이클뷰에 데이터를 연결하여 리스트를 만들 수 있도록 한다.
 
 ---
 
-- ##### onCreateViewHolder(ViewGroup, Int)
+- ###### onCreateViewHolder(ViewGroup, Int)
 
   ```kotlin
       override fun onCreateViewHolder(
@@ -178,7 +180,7 @@ class PairData (
       }
   ```
 
-- ##### onBindViewHolder(ViewHolder, Int)
+- ###### onBindViewHolder(ViewHolder, Int)
 
   ```kotlin
       override fun onBindViewHolder(
@@ -189,13 +191,13 @@ class PairData (
       }
   ```
 
-- ##### getItemCount()
+- ###### getItemCount()
 
   ```kotlin
   	override fun getItemCount(): Int = dataList.size
   ```
 
-- ##### nested class : RepositoryViewHolder
+- ###### nested class : RepositoryViewHolder
 
   ```kotlin
       class RepositoryViewHolder(private val binding: ItemListRepositoryBinding): RecyclerView.ViewHolder(binding.root){
@@ -210,11 +212,11 @@ class PairData (
 
 
 
-### fragment_follower.xml 레이아웃
+##### fragment_follower.xml 레이아웃
 
 ---
 
-- ##### 팔로워 리스트를 담을 리사이클뷰
+- ###### 팔로워 리스트를 담을 리사이클뷰
 
   ```xml
       <androidx.recyclerview.widget.RecyclerView
@@ -234,11 +236,11 @@ class PairData (
 
 
 
-### fragment_follower.xml 레이아웃
+##### fragment_follower.xml 레이아웃
 
 ---
 
-- ##### 팔로워 리스트를 담을 리사이클뷰
+- ###### 팔로워 리스트를 담을 리사이클뷰
 
   ```xml
       <androidx.recyclerview.widget.RecyclerView
@@ -256,7 +258,7 @@ class PairData (
 
 
 
-## 🟦RepositoryFragment
+#### 🔹RepositoryFragment
 
 - 레포지토리 목록을 보여주는 프래그먼트로, 리사이클뷰로 구성되어 있다.
 
@@ -264,11 +266,11 @@ class PairData (
 
   
 
-### fragment_repository.xml 레이아웃
+##### fragment_repository.xml 레이아웃
 
 ---
 
-- ##### 레포지토리를 담는 리사이클 뷰
+- ###### 레포지토리를 담는 리사이클 뷰
 
   ```xml
       <androidx.recyclerview.widget.RecyclerView
@@ -288,11 +290,11 @@ class PairData (
 
 
 
-### item_list_repository.xml 레이아웃
+#### item_list_repository.xml 레이아웃
 
 ---
 
-- ##### 레포지토리 설명 텍스트의 길이가 일정 이상 넘어가면 생략 표시(...)을 하도록 ellipsize 옵션을 설정하였다.
+- ###### 레포지토리 설명 텍스트의 길이가 일정 이상 넘어가면 생략 표시(...)을 하도록 ellipsize 옵션을 설정하였다.
 
   ```xml
       <TextView
@@ -310,15 +312,15 @@ class PairData (
 
 
 
-## 🟦HomeActivity
+#### 🔹HomeActivity
 
 - 로그인 대상의 사진, 간단한 정보와 함께 팔로워, 레포지토리 목록을 보여주는 액티비티이다.
 
-### activity_home.xml 레이아웃
+##### activity_home.xml 레이아웃
 
 ---
 
-- ##### Fragment를 담을 컨테이너 뷰
+- ###### Fragment를 담을 컨테이너 뷰
 
   ```xml
       <androidx.fragment.app.FragmentContainerView
@@ -336,7 +338,7 @@ class PairData (
 
   
 
-- ##### 프래그먼트 교체 버튼
+- ###### 프래그먼트 교체 버튼
 
   ```xml
       <Button
@@ -372,11 +374,11 @@ class PairData (
 
 
 
-### HomeActivity.kt 코드
+##### HomeActivity.kt 코드
 
 ---
 
-- ##### 프래그먼트 트랜잭션 초기화
+- ###### 프래그먼트 트랜잭션 초기화
 
   ```kotlin
       private fun initFragmentTransactionEvent(){
@@ -402,15 +404,15 @@ class PairData (
 
 
 
-## 🟢LEVEL 2
+### 🟢LEVEL 2
 
 
 
-### 🟦DetailActivity에서 상세 설명
+##### DetailActivity에서 상세 설명
 
 ---
 
-- ##### 아이템에 리스너 추가
+- ###### 아이템에 리스너 추가
 
   ```kotlin
   			binding.itemFollower.setOnClickListener { v:View ->
@@ -426,7 +428,7 @@ class PairData (
 
 
 
-- ##### DetailActivity.kt에서 인텐트를 받아 처리하기
+- ###### DetailActivity.kt에서 인텐트를 받아 처리하기
 
   ```kotlin
       private fun initMatchName(){
@@ -455,11 +457,11 @@ class PairData (
 
 
 
-### 🟦ItemDecoration으로 구분선 만들기
+##### ItemDecoration으로 구분선 만들기
 
 ---
 
-- ##### CustomDecoration 클래스 만들기
+- ###### CustomDecoration 클래스 만들기
 
   ```kotlin
   class CustomDecoration(
@@ -493,7 +495,7 @@ class PairData (
 
   
 
-- ##### 바인딩을 통해 리사이클뷰에 적용시키기
+- ###### 바인딩을 통해 리사이클뷰에 적용시키기
 
   ```kotlin
           val decoration = CustomDecoration(1.0f, 0.5f, rgb(246,88,166))
@@ -502,11 +504,12 @@ class PairData (
 
   
 
-### 🟦아이템 이동/삭제
+  ##### 아이템 이동/삭제
+
 
 ---
 
-- ##### ItemTouchHelperListener 인터페이스
+- ###### ItemTouchHelperListener 인터페이스
 
   ```kotlin
   interface ItemTouchHelperListener {
@@ -515,7 +518,7 @@ class PairData (
   }
   ```
 
-- ##### ItemTouchHelperCallback 클래스
+- ###### ItemTouchHelperCallback 클래스
 
   ```kotlin
   class ItemTouchHelperCallback(val listener: ItemTouchHelperListener): ItemTouchHelper.Callback() {
@@ -550,7 +553,7 @@ class PairData (
   - isLongPressEnabled를 항상 true를 반환하도록 구현하여 드래그를 할 수 있도록 한다.
   - onMove나 onSwiped의 경우 프로퍼티의 앞의 인터페이스를 구현한 리스너가 처리한다.
 
-- ##### FollowerViewAdapter에서 ItemTouchHelperListener 인터페이스 구현하기
+- ###### FollowerViewAdapter에서 ItemTouchHelperListener 인터페이스 구현하기
 
   ```kotlin
   class FollowerViewAdapter: RecyclerView.Adapter<FollowerViewAdapter.FollowerViewHolder>(), ItemTouchHelperListener {
@@ -575,7 +578,7 @@ class PairData (
 
   move의 경우 데이터를 삭제하고 이동할 위치에 새로 추가한다.
 
-- ##### RecyclerView에 Helper 붙이기
+- ###### RecyclerView에 Helper 붙이기
 
   ```kotlin
   ItemTouchHelper(ItemTouchHelperCallback(followerViewAdapter)).attachToRecyclerView(binding.rvFollower)
@@ -589,7 +592,7 @@ class PairData (
 
 
 
-## 🟢LEVEL 3
+### 🟢LEVEL 3
 
 - #### notifyDataSetChanged의 문제점
 
@@ -611,7 +614,7 @@ class PairData (
 
 
 
-## 🟢과제를 통해 성장한 내용
+### 🟢과제를 통해 성장한 내용
 
 1. FragmentManager를 이용해 트랜잭션을 생성하고 커밋하여 프래그먼트를 추가/교체
 2. Fragment에서의 뷰 바인딩
