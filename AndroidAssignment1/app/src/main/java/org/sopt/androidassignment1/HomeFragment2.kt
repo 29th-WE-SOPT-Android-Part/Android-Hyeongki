@@ -29,10 +29,10 @@ class HomeFragment2 : Fragment() {
     }
 
     private fun initAdapter(){
-        val fragments = listOf(GithubFollowerFragment(), GithubFollowingFragment())
+        val fragmentList = listOf(GithubFollowerFragment(), GithubFollowingFragment())
 
         homeFragmentViewPagerAdapter = HomeFragmentViewPagerAdapter(this)
-        homeFragmentViewPagerAdapter.fragments.addAll(fragments)
+        homeFragmentViewPagerAdapter.fragments.addAll(fragmentList)
 
         binding.vpHome.adapter = homeFragmentViewPagerAdapter
     }

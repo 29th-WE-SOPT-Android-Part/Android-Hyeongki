@@ -9,7 +9,7 @@ import org.sopt.androidassignment1.databinding.FragmentGithubFollowingBinding
 
 class GithubFollowingFragment : Fragment() {
     private var _binding: FragmentGithubFollowingBinding? = null
-    private val binding = _binding!!
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

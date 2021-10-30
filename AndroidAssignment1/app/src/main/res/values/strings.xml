@@ -10,4 +10,5 @@
     <string name="detail_and">안드로이드입니다.\n안드로이드안드로이드\n안드안드안드안드</string>
     <string name="detail_alg">알고알고알고\n유튜브알고리즘\nalgorithm\n공부하자</string>
     <string name="img_url_test">https://user-images.githubusercontent.com/37872134/139478529-930b985c-9927-4efa-b0ca-56ca2c6d2ea8.jpg</string>
+    <string name="not_ready">준비중입니다</string>
 </resources>
