@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeFragment1">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_profile_background"
+        android:layout_width="match_parent"
+        android:layout_height="182dp"
+        android:background="@color/pink_pop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0">
+
+        <View
+            android:id="@+id/normv_white_rect"
+            android:layout_width="2dp"
+            android:layout_height="15dp"
+            android:layout_marginEnd="3dp"
+            android:background="@color/white"
+
+            app:layout_constraintBottom_toBottomOf="@+id/tv_profile_introduction"
+            app:layout_constraintEnd_toStartOf="@+id/tv_profile_introduction"
+            app:layout_constraintTop_toTopOf="@+id/tv_profile_introduction" />
+
+        <ImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="66dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="22dp"
+            tools:src="@drawable/img_profile"
+            app:layout_constraintDimensionRatio="1"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+
+            android:text="Hyeongki Kim"
+            android:fontFamily="@font/noto_sans_kr"
+            android:textFontWeight="700"
+            android:textSize="20sp"
+            android:includeFontPadding="false"
+            android:textColor="@color/white"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_profile" />
+
+        <TextView
+            android:id="@+id/tv_profile_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:text="gimangi"
+            android:fontFamily="@font/noto_sans_kr"
+            android:textFontWeight="400"
+            android:textSize="14sp"
+            android:includeFontPadding="false"
+            android:textColor="@color/white"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_profile_name" />
+
+        <TextView
+            android:id="@+id/tv_profile_introduction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+
+            android:fontFamily="@font/noto_sans_kr"
+            android:textFontWeight="500"
+            android:textColor="@color/white"
+            android:includeFontPadding="false"
+            android:textSize="14sp"
+            android:text="안드로이드 29th 김형기"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_profile_id" />
+
+        <ImageButton
+            android:id="@+id/btn_setting"
+            android:layout_width="48dp"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_setting_white"
+            android:background="#00000000"
+            android:layout_margin="7dp"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RadioGroup
+        android:id="@+id/rg_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cl_profile_background"
+        >
+
+        <RadioButton
+            android:id="@+id/btn_follower"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_marginVertical="11dp"
+            android:layout_marginStart="11dp"
+            android:layout_marginEnd="7dp"
+            android:background="@drawable/button_radius"
+            android:backgroundTint="@color/selector_botton_home_profile"
+            android:button="@null"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:checked="true"
+
+            android:fontFamily="@font/noto_sans_kr"
+            android:includeFontPadding="false"
+            android:paddingVertical="10dp"
+            android:text="팔로워 목록"
+            android:textColor="@color/selector_text_home_profile"
+            android:textFontWeight="400"
+            android:textSize="14sp"
+
+            app:layout_constraintEnd_toStartOf="@+id/normv_empty"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_profile_background" />
+
+        <RadioButton
+            android:id="@+id/btn_repository"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_marginVertical="11dp"
+            android:layout_marginRight="11dp"
+            android:layout_marginLeft="7dp"
+            android:background="@drawable/button_radius"
+            android:backgroundTint="@color/selector_botton_home_profile"
+            android:button="@null"
+            android:layout_weight="1"
+            android:textAlignment="center"
+
+            android:fontFamily="@font/noto_sans_kr"
+            android:includeFontPadding="false"
+            android:text="레포지토리 목록"
+            android:textColor="@color/selector_text_home_profile"
+
+
+            android:textFontWeight="400"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/normv_empty"
+            app:layout_constraintTop_toBottomOf="@+id/cl_profile_background" />
+
+    </RadioGroup>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/home_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rg_home" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
