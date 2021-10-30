@@ -5,10 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import org.sopt.androidassignment1.databinding.ItemListFollowerBinding
 
 class FollowerViewAdapter: RecyclerView.Adapter<FollowerViewAdapter.FollowerViewHolder>(), ItemTouchHelperListener {
-    val datalist = mutableListOf<PairData>()
+    val datalist = mutableListOf<TripleData>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -27,9 +28,15 @@ class FollowerViewAdapter: RecyclerView.Adapter<FollowerViewAdapter.FollowerView
     override fun getItemCount(): Int = datalist.size
 
     class FollowerViewHolder(private val binding: ItemListFollowerBinding): RecyclerView.ViewHolder(binding.root){
-        fun onBind(data: PairData){
+        fun onBind(data: TripleData){
             binding.tvFollowerName.text = data.name
             binding.tvFollowerIntroduction.text = data.introduction
+
+            Glide.with(itemView)
+                .load(data.imgUrl)
+                .circleCrop()
+                .into(binding.ivFollower)
+
             binding.itemFollower.setOnClickListener { v:View ->
                 val intent = Intent(v.context, DetailActivity::class.java)
                 intent.putExtra("name", data.name)

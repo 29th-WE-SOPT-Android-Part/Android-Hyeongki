@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import org.sopt.androidassignment1.databinding.ItemListRepositoryBinding
 
 class RepositoryViewAdapter: RecyclerView.Adapter<RepositoryViewAdapter.RepositoryViewHolder>() {
-    var dataList = mutableListOf<PairData>()
+    var dataList = mutableListOf<TripleData>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -27,7 +27,7 @@ class RepositoryViewAdapter: RecyclerView.Adapter<RepositoryViewAdapter.Reposito
     override fun getItemCount(): Int = dataList.size
 
     class RepositoryViewHolder(private val binding: ItemListRepositoryBinding): RecyclerView.ViewHolder(binding.root){
-        fun onBind(data: PairData){
+        fun onBind(data: TripleData){
             binding.tvRepositoryName.text = data.name
             binding.tvRepositoryIntroduction.text = data.introduction
         }

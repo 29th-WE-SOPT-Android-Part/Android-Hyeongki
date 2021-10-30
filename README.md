@@ -10,6 +10,8 @@
 
 
 
+
+
 ## :one: Week 1
 
 
@@ -937,6 +939,234 @@ class PairData (
 
 
 
+
+
+
+## :three: Week 3
+
+
+
+### 🟢 LEVEL 1
+
+<img src="https://user-images.githubusercontent.com/37872134/138349204-03c0394c-1059-4ce2-8afe-e3a9c690cba3.gif"  width="270" height="570"/>
+
+
+
+#### ◻ ShapeDrawable - 로그인 버튼
+
+
+
+#### ◻ Selector - 아이디/비밀번호 입력 텍스트
+
+- 
+
+
+
+#### ◻ FontFamily - 폰트 추가 (noto sans kr)
+
+- 폰트 import 하기
+
+  1. font 디렉토리를 생성한다.
+
+  2. import할 폰트를 디렉토리에 넣어준다.
+
+  3. 디렉토리 내에서 리소스 파일을 생성하고 font-family를 작성한다.
+
+     ```xml
+     <?xml version="1.0" encoding="utf-8"?>
+     <font-family xmlns:android="http://schemas.android.com/apk/res/android"
+         xmlns:app="http://schemas.android.com/apk/res-auto">
+     
+         <font
+             android:font="@font/noto_sans_kr_regular"
+             android:fontWeight="400"
+             app:font="@font/noto_sans_kr_regular"
+             app:fontWeight="400"
+             />
+                         ...
+         <font
+             android:font="@font/noto_sans_kr_bold"
+             android:fontWeight="700"
+             app:font="@font/noto_sans_kr_bold"
+             app:fontWeight="700"
+             />
+                         ...
+     </font-family>
+     ```
+
+     - font : 사용할 폰트를 지정한다.
+     - fontWeight : 이를 통해 같은 폰트 내의 다른 스타일을 구별할 수 있다.
+     - 안드로이드 8.0 미만에서 font family를 호환하기 위해서는 **app** 태그도 작성해야한다.
+
+- fontFamily : 적용할 fontFamily를 선택한다.
+- textfontWeight : fontWeight를 통해 fontFamily 내에서 구분되는 폰트를 이용한다. (ex thin, regular, bold, ..)
+- textSize : 글자의 크기
+- **includeFontPadding** : 폰트를 추가하면 자동으로 여백이 생기는 현상이 발생하기에 디자인을 적용하는데 불편함이 있다. 해당 속성을 false로 설정하면 여백을 없앨 수 있다. (또는 마이너스 padding을 통해 해결이 가능하다.)
+
+
+
+#### ◻ 피그마 단위 변환
+
+- px = dp * ( dpi / 160 )
+
+- dp = px * ( 160 / dpi )
+
+  160dpi (mdpi)로 제작된 디자인을 사용하기 때문에 px을 그대로 dp로 사용해도 된다.
+
+
+
+#### ◻ 회원가입 버튼 만들기
+
+- ##### 텍스트 밖의 여백 제거
+
+  layout_width, layout_height를 wrap_content로 설정하여도 버튼 자체의 기본 여백이 있어서 디자인을 적용하기 불편하다. 이 때 아래의 값들을 0dp로 설정하면 정확하게 텍스트만 남은 버튼을 만들 수 있다.
+  - android:minWidth
+  - android:minHeight
+
+- ##### textView와 Button을 하나의 레이아웃으로 묶기
+
+  ```xml
+      <androidx.constraintlayout.widget.ConstraintLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="16dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/btn_signin">
+  
+          <TextView
+              android:id="@+id/tv_no_account"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+  
+              android:fontFamily="@font/noto_sans_kr"
+              android:includeFontPadding="false"
+              android:text="계정이 없으신가요?"
+              android:textColor="@color/gray_3"
+              android:textFontWeight="400"
+              android:textSize="12sp"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent" />
+  
+          <Button
+              android:id="@+id/btn_signup"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="8dp"
+              android:background="#00000000"
+              android:minWidth="0dp"
+              android:minHeight="0dp"
+              
+              android:fontFamily="@font/noto_sans_kr"
+              android:includeFontPadding="false"
+              android:text="회원가입"
+              android:textColor="@color/gray_3"
+              android:textFontWeight="700"
+              android:textSize="12sp"
+              
+              app:layout_constraintStart_toEndOf="@+id/tv_no_account"
+              app:layout_constraintTop_toTopOf="parent" />
+      </androidx.constraintlayout.widget.ConstraintLayout>
+  ```
+
+  회원가입 버튼 디자인을 살펴보면, textView와 버튼은 8dp 떨어진 상태로 둘의 그룹이 parent 뷰를 상대로 가운데 정렬 되어있는 것을 확인할 수 있다.
+
+  따라서 textView와 버튼을 하나의 ConstraintLayout으로 묶은 후 레이아웃에서 margin 등을 조정해 대칭을 맞춘다.
+
+
+
+#### ◻ BottomNavigationView - 하단 메뉴(HomeActivity)
+
+- ##### 아이콘 import
+
+  피그마에서 svg형식으로 export한 아이콘을 **vector asset** 추가를 통해 xml로 변환시켜준다.
+
+- ##### menu_home.xml
+
+  네비게이션뷰의 디자인을 결정한다.
+
+  ```xml
+  <?xml version="1.0" encoding="utf-8"?>
+  <menu xmlns:android="http://schemas.android.com/apk/res/android">
+      <item
+          android:id="@+id/menu_profile"
+          android:icon="@drawable/ic_profile"
+          android:title="프로필"/>
+      <item
+          android:id="@+id/menu_home"
+          android:icon="@drawable/ic_home"
+          android:title="홈"/>
+      <item
+          android:id="@+id/menu_camera"
+          android:icon="@drawable/ic_camera"
+          android:title="카메라"/>
+  </menu>
+  ```
+
+  
+
+- ##### selector_bottom_navi.xml
+
+  네비게이션뷰에서 아이템이 선택되었는지 여부에 따라 다른 색상을 적용시키기 위해서 selector를 사용한다.
+
+  ```xml
+  <?xml version="1.0" encoding="utf-8"?>
+  <selector xmlns:android="http://schemas.android.com/apk/res/android">
+      <item android:color="#FA79B0" android:state_checked="true"/>
+      <item android:color="#8F9090" android:state_checked="false"/>
+  </selector>
+  ```
+
+  
+
+- ##### 네비게이션뷰 추가
+
+  HomeActivity에 뷰를 추가한다.
+
+  ```xml
+      <com.google.android.material.bottomnavigation.BottomNavigationView
+          android:id="@+id/bnv_home"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="#FFFFFF"
+  
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+  
+          app:itemIconTint="@color/selector_bottom_navi"
+          app:itemTextColor="@color/selector_bottom_navi"
+          app:itemRippleColor="@color/main_pink"
+  
+          app:itemTextAppearanceActive="@style/MenuFont"
+          app:itemTextAppearanceInactive="@style/MenuFont"
+          app:menu="@menu/menu_home" />
+  ```
+
+  - itemIconTint : 아이템의 아이콘 색상
+
+  - itemTextColor : 아이템의 텍스트(타이틀) 색상
+
+  - itemRippleColor : 아이템 선택 시 퍼져나가는 물결 효과의 색상
+
+  - itemTextAppearance : 아이템의 텍스트에 적용할 디자인
+
+    style (themes.xml)에 다음처럼 MenuFont를 생성해준다.
+
+    ```xml
+        <style name="MenuFont" parent="android:Widget.TextView">
+            <item name="android:fontFamily">@font/noto_sans_kr</item>
+            <item name="android:fontWeight">500</item>
+            <item name="android:textSize">10sp</item>
+            <item name="android:layout_margin">6dp</item>
+        </style>
+    ```
+
+    
+
+- ##### 리스너 구현
+
+- ##### OnPageChangeCallBack
 
 
 

@@ -6,10 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout.VERTICAL
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.google.android.material.tabs.TabLayoutMediator
 import org.sopt.androidassignment1.databinding.FragmentFollowerBinding
 
 class FollowerFragment : Fragment() {
@@ -33,8 +32,9 @@ class FollowerFragment : Fragment() {
         _binding = null
     }
 
+
     private fun initAdapter(){
-        val decoration = CustomDecoration(1.0f, 0.5f, rgb(246,88,166))
+        val decoration = CustomDecoration(1.0f, 0.0f, rgb(221,226,229))
         binding.rvFollower.addItemDecoration(decoration)
 
         followerViewAdapter = FollowerViewAdapter()
@@ -43,11 +43,11 @@ class FollowerFragment : Fragment() {
 
         followerViewAdapter.datalist.addAll(
             listOf(
-                PairData("김형기", "YB 29기 김형기"),
-                PairData("고틀린", "코틀린의 달인"),
-                PairData("김자바", "자바는 내 인생"),
-                PairData("이안드", "안드로이드 최고"),
-                PairData("박알고", "알고리즘 마스터")
+                TripleData("김형기", "YB 29기 김형기", getString(R.string.img_url_test)),
+                TripleData("고틀린", "코틀린의 달인", getString(R.string.img_url_test)),
+                TripleData("김자바", "자바는 내 인생", getString(R.string.img_url_test)),
+                TripleData("이안드", "안드로이드 최고", getString(R.string.img_url_test)),
+                TripleData("박알고", "알고리즘 마스터", getString(R.string.img_url_test))
             )
         )
         followerViewAdapter.notifyDataSetChanged()
@@ -55,5 +55,6 @@ class FollowerFragment : Fragment() {
         ItemTouchHelper(ItemTouchHelperCallback(followerViewAdapter)).attachToRecyclerView(binding.rvFollower)
 
     }
+
 
 }
