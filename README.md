@@ -944,13 +944,11 @@ class PairData (
 
 ## :three: Week 3
 
+<img src="https://user-images.githubusercontent.com/37872134/139559071-f67e707a-5849-44cf-a8bb-108675e8cace.gif"  width="180" height="320"/>
+
 
 
 ### 🟢 LEVEL 1
-
-<img src="https://user-images.githubusercontent.com/37872134/138349204-03c0394c-1059-4ce2-8afe-e3a9c690cba3.gif"  width="270" height="570"/>
-
-
 
 #### ◻ FontFamily - 폰트 추가 (noto sans kr)
 
