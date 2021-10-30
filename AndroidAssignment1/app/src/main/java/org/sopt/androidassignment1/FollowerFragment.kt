@@ -44,10 +44,10 @@ class FollowerFragment : Fragment() {
         followerViewAdapter.datalist.addAll(
             listOf(
                 TripleData("김형기", "YB 29기 김형기", getString(R.string.img_url_test)),
-                TripleData("고틀린", "코틀린의 달인", getString(R.string.img_url_test)),
-                TripleData("김자바", "자바는 내 인생", getString(R.string.img_url_test)),
-                TripleData("이안드", "안드로이드 최고", getString(R.string.img_url_test)),
-                TripleData("박알고", "알고리즘 마스터", getString(R.string.img_url_test))
+                TripleData("고틀린", "코틀린의 달인", getString(R.string.img_url_kot)),
+                TripleData("김자바", "자바는 내 인생", getString(R.string.img_url_jav)),
+                TripleData("이안드", "안드로이드 최고", getString(R.string.img_url_and)),
+                TripleData("박알고", "알고리즘 마스터", getString(R.string.img_url_alg))
             )
         )
         followerViewAdapter.notifyDataSetChanged()

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
 import org.sopt.androidassignment1.databinding.ActivityHomeBinding
 
@@ -49,6 +50,7 @@ class HomeActivity : AppCompatActivity() {
             return@setOnItemSelectedListener true
         }
     }
+
 
     companion object{
         const val FIRST_FRAGMENT = 0
