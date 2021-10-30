@@ -8,7 +8,7 @@
 
 [:two: Week 2](#two-week-2)
 
-
+[:three: Week3](#three-week-3)
 
 
 
@@ -952,16 +952,6 @@ class PairData (
 
 
 
-#### ◻ ShapeDrawable - 로그인 버튼
-
-
-
-#### ◻ Selector - 아이디/비밀번호 입력 텍스트
-
-- 
-
-
-
 #### ◻ FontFamily - 폰트 추가 (noto sans kr)
 
 - 폰트 import 하기
@@ -1166,7 +1156,610 @@ class PairData (
 
 - ##### 리스너 구현
 
+  ```kotlin
+          binding.bnvHome.setOnItemSelectedListener {
+              when(it.itemId){
+                  R.id.menu_profile -> binding.vpHome.currentItem = FIRST_FRAGMENT
+                  R.id.menu_home -> binding.vpHome.currentItem = SECOND_FRAGMENT
+                  else -> binding.vpHome.currentItem = THIRD_FRAGMENT
+              }
+              return@setOnItemSelectedListener true
+          }
+  ```
+
+  
+
 - ##### OnPageChangeCallBack
 
+  ```kotlin
+          binding.vpHome.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+              override fun onPageSelected(position: Int) {
+                  binding.bnvHome.menu.getItem(position).isChecked = true
+              }
+          })
+  ```
+
+  
+
+  
+
+#### ◻ HomeActivity - 프로필
+
+- ##### 팔로워 목록 / 레포지토리 목록 버튼
+
+  TabLayout을 이용하면 내부 버튼의 스타일을 커스텀하기 힘들고, 기존의 버튼을 이용하면 선택한 버튼에 색상을 변경하는 것이 어렵다.
+
+  따라서 라디오버튼을 이용하였다.
+
+  ```xml
+      <RadioGroup
+          android:id="@+id/rg_home"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/cl_profile_background"
+          >
+  
+          <RadioButton
+              android:id="@+id/btn_follower"
+              android:layout_width="0dp"
+              android:layout_height="46dp"
+              android:layout_marginVertical="11dp"
+              android:layout_marginStart="11dp"
+              android:layout_marginEnd="7dp"
+              android:background="@drawable/button_radius"
+              android:backgroundTint="@color/selector_botton_home_profile"
+              android:button="@null"
+              android:layout_weight="1"
+              android:textAlignment="center"
+              android:checked="true"
+  
+              android:fontFamily="@font/noto_sans_kr"
+              android:includeFontPadding="false"
+              android:paddingVertical="10dp"
+              android:text="팔로워 목록"
+              android:textColor="@color/selector_text_home_profile"
+              android:textFontWeight="400"
+              android:textSize="14sp"
+  
+              app:layout_constraintEnd_toStartOf="@+id/normv_empty"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toBottomOf="@+id/cl_profile_background" />
+  
+          <RadioButton
+              android:id="@+id/btn_repository"
+              android:layout_width="0dp"
+              android:layout_height="46dp"
+              android:layout_marginVertical="11dp"
+              android:layout_marginRight="11dp"
+              android:layout_marginLeft="7dp"
+              android:background="@drawable/button_radius"
+              android:backgroundTint="@color/selector_botton_home_profile"
+              android:button="@null"
+              android:layout_weight="1"
+              android:textAlignment="center"
+  
+              android:fontFamily="@font/noto_sans_kr"
+              android:includeFontPadding="false"
+              android:text="레포지토리 목록"
+              android:textColor="@color/selector_text_home_profile"
+  
+  
+              android:textFontWeight="400"
+              android:textSize="14sp"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintStart_toEndOf="@+id/normv_empty"
+              app:layout_constraintTop_toBottomOf="@+id/cl_profile_background" />
+  
+      </RadioGroup>
+  ```
+
+  기본으로 '팔로워 목록' 버튼이 checked 상태이며, 이는 버튼을 클릭할 때마다 자동으로 라디오 그룹이 관리한다. 또한 selector를 이용해서 checked 상태로 색을 적용한다.
+
+  - 버튼 배경색
+
+  ```xml
+  <?xml version="1.0" encoding="utf-8"?>
+  <selector xmlns:android="http://schemas.android.com/apk/res/android">
+      <item android:color="@color/orange" android:state_checked="true"/>
+      <item android:color="@color/gray_6" android:state_checked="false"/>
+  </selector>
+  ```
+
+  - 버튼 글자색
+
+  ```xml
+  <?xml version="1.0" encoding="utf-8"?>
+  <selector xmlns:android="http://schemas.android.com/apk/res/android">
+      <item android:color="@color/white" android:state_checked="true"/>
+      <item android:color="@color/gray_1" android:state_checked="false"/>
+  </selector>
+  ```
 
 
+
+- ##### Glide를 이용한 둥근 이미지 만들기
+
+  ```kotlin
+          Glide.with(this)
+              .load(getString(R.string.img_url_test))
+              .circleCrop()
+              .into(binding.ivProfile)
+  ```
+
+  Glide로 url의 이미지를 불러와서 circleCrop()으로 둥글게 만들 수 있다.
+
+
+
+
+
+
+
+#### ◻ HomeActivity - 홈
+
+TabLayout과 ViewPager2를 이용하였다.
+
+
+
+- fragment_home2.xml
+
+  ```
+  <?xml version="1.0" encoding="utf-8"?>
+  <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      tools:context=".HomeFragment2">
+  
+      <ImageView
+          android:id="@+id/iv_title"
+          android:layout_width="65dp"
+          android:layout_height="65dp"
+          android:layout_marginTop="40dp"
+          android:src="@drawable/icon_github"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+  
+      <TextView
+          android:id="@+id/tv_title"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="11dp"
+  
+          android:text="GitHub"
+          android:fontFamily="@font/noto_sans_kr"
+          android:textFontWeight="700"
+          android:textSize="20sp"
+          android:textColor="@color/pink_power"
+          android:includeFontPadding="false"
+  
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/iv_title" />
+  
+      <com.google.android.material.tabs.TabLayout
+          android:id="@+id/tl_home"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="25dp"
+          app:layout_constraintTop_toBottomOf="@+id/tv_title"
+          app:tabTextAppearance="@style/GithubTabText"
+          app:tabSelectedTextColor="@color/pink_power"
+          app:tabIndicatorColor="@color/pink_power"
+          app:tabIndicatorHeight="3dp"
+          >
+      </com.google.android.material.tabs.TabLayout>
+  
+      <org.sopt.androidassignment1.NestedScrollableHost
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          app:layout_constraintTop_toBottomOf="@+id/tl_home"
+          app:layout_constraintBottom_toBottomOf="parent">
+  
+          <androidx.viewpager2.widget.ViewPager2
+              android:id="@+id/vp_home"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"/>
+  
+      </org.sopt.androidassignment1.NestedScrollableHost>
+  
+  
+  </androidx.constraintlayout.widget.ConstraintLayout>
+  ```
+
+  
+
+
+
+- HomeFragment2.kt
+
+  ```
+  package org.sopt.androidassignment1
+  
+  import android.os.Bundle
+  import androidx.fragment.app.Fragment
+  import android.view.LayoutInflater
+  import android.view.MotionEvent
+  import android.view.View
+  import android.view.ViewGroup
+  import android.widget.Toast
+  import androidx.viewpager2.widget.ViewPager2
+  import com.google.android.material.tabs.TabLayoutMediator
+  import org.sopt.androidassignment1.databinding.FragmentGithubFollowerBinding
+  import org.sopt.androidassignment1.databinding.FragmentGithubFollowingBinding
+  import org.sopt.androidassignment1.databinding.FragmentHome2Binding
+  
+  /* HomeActivity -> Fragment <Home> */
+  class HomeFragment2 : Fragment() {
+      private var _binding: FragmentHome2Binding? = null
+      private val binding get() = _binding?: error("Binding not init")
+      private lateinit var homeFragmentViewPagerAdapter: HomeFragmentViewPagerAdapter
+  
+      override fun onCreateView(
+          inflater: LayoutInflater, container: ViewGroup?,
+          savedInstanceState: Bundle?
+      ): View? {
+          _binding = FragmentHome2Binding.inflate(layoutInflater, container, false)
+  
+          initAdapter()
+          initTabLayout()
+  
+          return binding.root
+      }
+  
+      private fun initAdapter(){
+          val fragmentList = listOf(GithubFollowerFragment(), GithubFollowingFragment())
+  
+          homeFragmentViewPagerAdapter = HomeFragmentViewPagerAdapter(this)
+          homeFragmentViewPagerAdapter.fragments.addAll(fragmentList)
+  
+          binding.vpHome.adapter = homeFragmentViewPagerAdapter
+  
+      }
+  
+      private fun initTabLayout(){
+          val tabLabel = listOf("팔로잉", "팔로워")
+  
+          TabLayoutMediator(binding.tlHome, binding.vpHome){ tab, position ->
+              tab.text = tabLabel[position]
+          }.attach()
+      }
+  
+  
+      override fun onDestroyView() {
+          super.onDestroyView()
+          _binding = null
+      }
+  
+  
+  
+  }
+  
+  ```
+
+
+
+### 🟢 LEVEL 2
+
+#### ◻ ViewPager2 중첩 스크롤 문제
+
+requestDisallowInterceptTouchEvent를 사용해서 해결해보려고 했지만 어려웠다.
+
+또한 ViewPager2는 final로 선언되어 있어서 커스텀할 수 없었다. 그래서 구글에서 지원한 NestedScrollableHost로  ViewPager를 감싸서 해결하였다.
+
+- NestedScrollableHost
+
+  ```kotlin
+  package org.sopt.androidassignment1
+  
+  /*
+   * Copyright 2019 The Android Open Source Project
+   *
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   *      http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   */
+  
+  import android.content.Context
+  import android.util.AttributeSet
+  import android.view.MotionEvent
+  import android.view.View
+  import android.view.ViewConfiguration
+  import android.widget.FrameLayout
+  import androidx.viewpager2.widget.ViewPager2
+  import androidx.viewpager2.widget.ViewPager2.ORIENTATION_HORIZONTAL
+  import kotlin.math.absoluteValue
+  import kotlin.math.sign
+  
+  /**
+   * Layout to wrap a scrollable component inside a ViewPager2. Provided as a solution to the problem
+   * where pages of ViewPager2 have nested scrollable elements that scroll in the same direction as
+   * ViewPager2. The scrollable element needs to be the immediate and only child of this host layout.
+   *
+   * This solution has limitations when using multiple levels of nested scrollable elements
+   * (e.g. a horizontal RecyclerView in a vertical RecyclerView in a horizontal ViewPager2).
+   */
+  class NestedScrollableHost : FrameLayout {
+      constructor(context: Context) : super(context)
+      constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
+  
+      private var touchSlop = 0
+      private var initialX = 0f
+      private var initialY = 0f
+      private val parentViewPager: ViewPager2?
+          get() {
+              var v: View? = parent as? View
+              while (v != null && v !is ViewPager2) {
+                  v = v.parent as? View
+              }
+              return v as? ViewPager2
+          }
+  
+      private val child: View? get() = if (childCount > 0) getChildAt(0) else null
+  
+      init {
+          touchSlop = ViewConfiguration.get(context).scaledTouchSlop
+      }
+  
+      private fun canChildScroll(orientation: Int, delta: Float): Boolean {
+          val direction = -delta.sign.toInt()
+          return when (orientation) {
+              0 -> child?.canScrollHorizontally(direction) ?: false
+              1 -> child?.canScrollVertically(direction) ?: false
+              else -> throw IllegalArgumentException()
+          }
+      }
+  
+      override fun onInterceptTouchEvent(e: MotionEvent): Boolean {
+          handleInterceptTouchEvent(e)
+          return super.onInterceptTouchEvent(e)
+      }
+  
+      private fun handleInterceptTouchEvent(e: MotionEvent) {
+          val orientation = parentViewPager?.orientation ?: return
+  
+          // Early return if child can't scroll in same direction as parent
+          if (!canChildScroll(orientation, -1f) && !canChildScroll(orientation, 1f)) {
+              return
+          }
+  
+          if (e.action == MotionEvent.ACTION_DOWN) {
+              initialX = e.x
+              initialY = e.y
+              parent.requestDisallowInterceptTouchEvent(true)
+          } else if (e.action == MotionEvent.ACTION_MOVE) {
+              val dx = e.x - initialX
+              val dy = e.y - initialY
+              val isVpHorizontal = orientation == ORIENTATION_HORIZONTAL
+  
+              // assuming ViewPager2 touch-slop is 2x touch-slop of child
+              val scaledDx = dx.absoluteValue * if (isVpHorizontal) .5f else 1f
+              val scaledDy = dy.absoluteValue * if (isVpHorizontal) 1f else .5f
+  
+              if (scaledDx > touchSlop || scaledDy > touchSlop) {
+                  if (isVpHorizontal == (scaledDy > scaledDx)) {
+                      // Gesture is perpendicular, allow all parents to intercept
+                      parent.requestDisallowInterceptTouchEvent(false)
+                  } else {
+                      // Gesture is parallel, query child if movement in that direction is possible
+                      if (canChildScroll(orientation, if (isVpHorizontal) dx else dy)) {
+                          // Child can scroll, disallow all parents to intercept
+                          parent.requestDisallowInterceptTouchEvent(true)
+                      } else {
+                          // Child cannot scroll, allow all parents to intercept
+                          parent.requestDisallowInterceptTouchEvent(false)
+                      }
+                  }
+              }
+          }
+      }
+  }
+  ```
+
+- fragment_home2.xml 에서 viewPager를 감싸기
+
+  ```xml
+      <org.sopt.androidassignment1.NestedScrollableHost
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          app:layout_constraintTop_toBottomOf="@+id/tl_home"
+          app:layout_constraintBottom_toBottomOf="parent">
+  
+          <androidx.viewpager2.widget.ViewPager2
+              android:id="@+id/vp_home"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"/>
+  
+      </org.sopt.androidassignment1.NestedScrollableHost>
+  ```
+
+  
+
+  
+
+#### ◻ 리사이클러뷰에 url을 이용해 서로 다른 이미지 띄우기
+
+기존 name, introduction의 두 쌍으로 이루어진 data class에 uri도 포함시켰다.
+
+- TripleData
+
+  ```kotlin
+  class TripleData (
+      val name: String,
+      val introduction: String,
+      val imgUrl: String? = null
+  )
+  ```
+
+ViewHolder의 onBind에서 Glide를 이용해 url에서 이미지를 불러와 원형으로 그리도록 하였다.
+
+- FollowerViewAdapter.kt
+
+  ```kotlin
+      class FollowerViewHolder(private val binding: ItemListFollowerBinding): RecyclerView.ViewHolder(binding.root){
+          fun onBind(data: TripleData){
+              binding.tvFollowerName.text = data.name
+              binding.tvFollowerIntroduction.text = data.introduction
+  
+              Glide.with(itemView)
+                  .load(data.imgUrl)
+                  .circleCrop()
+                  .into(binding.ivFollower)
+  
+              binding.itemFollower.setOnClickListener { v:View ->
+                  val intent = Intent(v.context, DetailActivity::class.java)
+                  intent.putExtra("name", data.name)
+                  v.context.startActivity(intent)
+              }
+  
+          }
+      }
+  ```
+
+
+
+
+
+### 🟢 LEVEL 3
+
+
+
+#### ◻ 갤러리에서 받아온 이미지(uri)를 Glide로 화면에 띄우기
+
+- fragment_home3.xml
+
+  ```xml
+  <?xml version="1.0" encoding="utf-8"?>
+  <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      tools:context=".HomeFragment3">
+  
+  
+      <ImageView
+          android:id="@+id/iv_attached"
+          android:layout_width="200dp"
+          android:layout_height="0dp"
+          app:layout_constraintDimensionRatio="1"
+          android:layout_marginTop="80dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+  
+      <TextView
+          android:id="@+id/tv_plain"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="사진을 첨부해주세요"
+          android:fontFamily="@font/noto_sans_kr"
+          android:textFontWeight="500"
+          android:textSize="20sp"
+          android:includeFontPadding="false"
+          android:textColor="@color/black"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/iv_attached"
+          android:layout_marginTop="20dp"
+          />
+  
+      <Button
+          android:id="@+id/btn_attach_img"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginHorizontal="35dp"
+          android:layout_marginTop="20dp"
+          android:padding="10dp"
+          android:background="@drawable/button_radius"
+  
+          android:text="첨부하기"
+          android:fontFamily="@font/noto_sans_kr"
+          android:textFontWeight="400"
+          android:textColor="@color/white"
+          android:includeFontPadding="false"
+          android:textSize="16sp"
+  
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/tv_plain" />
+  </androidx.constraintlayout.widget.ConstraintLayout>
+  ```
+
+  다음과 같이 이미지뷰와 버튼을 만든다.
+
+
+
+- HomeFragment3.kt
+
+  ```kotlin
+  class HomeFragment3 : Fragment() {
+      private var _binding: FragmentHome3Binding? = null
+      private val binding get() = _binding!!
+  
+      override fun onCreateView(
+          inflater: LayoutInflater, container: ViewGroup?,
+          savedInstanceState: Bundle?
+      ): View? {
+          _binding = FragmentHome3Binding.inflate(layoutInflater, container, false)
+  
+          initListener()
+  
+          return binding.root
+      }
+  
+      override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+          super.onActivityResult(requestCode, resultCode, data)
+          if(requestCode == REQUEST_CODE){
+              if(resultCode == -1){
+                  Glide.with(requireContext()).load(data?.data).into(binding.ivAttached)
+              }
+          }
+      }
+  
+      private fun initListener(){
+          binding.btnAttachImg.setOnClickListener{
+              val intent = Intent()
+              intent.data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+              intent.type = "image/*"
+              intent.action = Intent.ACTION_GET_CONTENT
+  
+              startActivityForResult(intent, REQUEST_CODE)
+          }
+      }
+  
+      companion object{
+          const val REQUEST_CODE = 1
+      }
+  
+  }
+  ```
+
+  1. 버튼을 클릭하면 갤러리에 접근하는 intent를 생성하고, startActivityForResult를 호출하여 결과를 다시 받아올 수 있도록한다.
+
+  2. 갤러리의 액티비티가 finish되면 onActivityResult 메소드가 실행되고, request code를 비교한 후 Glide를 통해 얻어온 값(uri)으로 이미지뷰를 그린다.
+
+
+
+### 🟢 성장한 내용
+
+1. 중첩 viewPager의 이벤트에 대해 관리하기 위해 뷰에서의 이벤트 흐름을 알게 되었다. (상위 뷰에서 하위 뷰로 dispatch)
+
+2. Glide를 이용해 uri에 접근하여 이미지를 불러오고, 모양을 다듬는 방법을 알게 되었다.
+3. Figma의 정보를 바탕으로 해상도에 맞게 적용할 수 있었다
+4. NavigationBar, TabLayout 등을 커스텀하면서 xml의 사용에 대한 감을 익히게 되었다.
+5. svg로 추출한 파일을 vector asset으로 추가해서 벡터 이미지로 사용하여 해상도 때문에 불편하지 않을 것 같다.
+6. 그동안 fontWeight를 설정하면 때로는 특정 값에서는 bold가 되지만 특정 값에서는 아무 변화가 없는 이유가 궁금했는데, fontFamily에 대해서 알게 되었다.
+7. 액티비티 간의 정보를 주고 받는 방법에 대해서 이해할 수 있었다.

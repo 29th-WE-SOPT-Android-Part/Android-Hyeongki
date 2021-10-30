@@ -55,6 +55,4 @@ class HomeFragment3 : Fragment() {
         const val REQUEST_CODE = 1
     }
 
-
-
 }
