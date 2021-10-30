@@ -10,7 +10,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import org.sopt.androidassignment1.databinding.FragmentFollowerBinding
 import org.sopt.androidassignment1.databinding.FragmentHome1Binding
 
-/* HomeActivity -> Fragment Profile */
+/* HomeActivity -> Fragment <Profile> */
 class HomeFragment1 : Fragment() {
     private var _binding: FragmentHome1Binding? = null
     private val binding get() = _binding!!
@@ -53,6 +53,11 @@ class HomeFragment1 : Fragment() {
         binding.btnRepository.setOnClickListener{
             parentFragmentManager.beginTransaction().replace(R.id.home_fragment_container, fragment2).commit()
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 

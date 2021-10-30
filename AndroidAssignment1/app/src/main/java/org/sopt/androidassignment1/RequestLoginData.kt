@@ -3,15 +3,7 @@ package org.sopt.androidassignment1
 import com.google.gson.annotations.SerializedName
 
 data class RequestLoginData(
-    val status: Int,
-    val success: Boolean,
-    val message: String,
-    val data: Data
+    @SerializedName("email")
+    val id : String,
+    val password : String
 )
-{
-    data class Data(
-        val id: Int,
-        val name: String,
-        val email: String
-    )
-}

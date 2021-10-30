@@ -1,5 +1,6 @@
 package org.sopt.androidassignment1
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -21,6 +22,13 @@ class SignUpActivity : AppCompatActivity() {
 
             if(nameInput.isNotBlank() && idInput.isNotBlank() && pwInput.isNotBlank()) {
                 Toast.makeText(this, "회원가입의 완료되었습니다", Toast.LENGTH_SHORT).show()
+
+                // register for activity result
+                val resultIntent = Intent(this, SignInActivity::class.java)
+                resultIntent.putExtra("id", idInput.toString())
+                resultIntent.putExtra("pw", pwInput.toString())
+                setResult(RESULT_OK, resultIntent)
+
                 finish()
             }
             else
