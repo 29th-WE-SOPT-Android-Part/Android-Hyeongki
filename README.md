@@ -2040,13 +2040,22 @@ FollowerFragment에 ViewAdapter로 list를 연결하기 전에 github API에서 
 
 참고로, Github API에는 요청 IP에서 일정 횟수 이상의 요청을 보내면 서비스해주지 않는다.
 
-
-
-<img src="https://user-images.githubusercontent.com/37872134/141484274-f37ad42f-0ff0-4e15-8696-676fa6a83c97.PNG" />
-
+팔로워 API의 {login}은 나의 깃허브 아이디인 gimangi가 들어가서 다음과 같이 팔로워 목록을 보여준다.
 
 
 
+<img src="https://user-images.githubusercontent.com/37872134/141484274-f37ad42f-0ff0-4e15-8696-676fa6a83c97.PNG" widht="250" height="400"/>
 
 
 
+
+
+
+
+
+
+### 🟢 성장한 내용
+
+- 서버 통신을 처리하기 위한 data 구조를 만드는 것을 알게 되었다.
+- retrofit2를 이용하여 서버에 request를 보내고, response를 받는 방법에 대해 알게 되었다.
+- GSON이라는 라이브러리를 이용하여 자바에서 JSON을 데이터로 바꿀 수 있다는 것을 알게 되었다.
