@@ -1,4 +1,4 @@
-package org.sopt.androidassignment1
+package org.sopt.androidassignment1.adpater
 
 import android.view.MotionEvent
 import androidx.fragment.app.Fragment

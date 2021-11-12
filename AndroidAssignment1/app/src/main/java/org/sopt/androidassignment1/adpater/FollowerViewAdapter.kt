@@ -1,4 +1,4 @@
-package org.sopt.androidassignment1
+package org.sopt.androidassignment1.adpater
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -6,22 +6,26 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import org.sopt.androidassignment1.DetailActivity
+import org.sopt.androidassignment1.ItemTouchHelperListener
 import org.sopt.androidassignment1.databinding.ItemListFollowerBinding
+import org.sopt.androidassignment1.model.TripleData
 
-class FollowerViewAdapter: RecyclerView.Adapter<FollowerViewAdapter.FollowerViewHolder>(), ItemTouchHelperListener {
+class FollowerViewAdapter: RecyclerView.Adapter<FollowerViewAdapter.FollowerViewHolder>(),
+    ItemTouchHelperListener {
     val datalist = mutableListOf<TripleData>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): FollowerViewAdapter.FollowerViewHolder {
+    ): FollowerViewHolder {
         var binding = ItemListFollowerBinding.inflate(
             LayoutInflater.from(parent.context), parent,false
         )
         return FollowerViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: FollowerViewAdapter.FollowerViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: FollowerViewHolder, position: Int) {
         holder.onBind(datalist[position])
     }
 

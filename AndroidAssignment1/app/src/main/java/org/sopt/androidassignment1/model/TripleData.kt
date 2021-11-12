@@ -1,4 +1,4 @@
-package org.sopt.androidassignment1
+package org.sopt.androidassignment1.model
 
 class TripleData (
     val name: String,

@@ -1,4 +1,4 @@
-package org.sopt.androidassignment1
+package org.sopt.androidassignment1.adpater
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
