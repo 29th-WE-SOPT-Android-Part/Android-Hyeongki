@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import org.sopt.androidassignment1.adpater.RepositoryViewAdapter
 import org.sopt.androidassignment1.databinding.FragmentRepositoryBinding
+import org.sopt.androidassignment1.model.TripleData
 
 class RepositoryFragment : Fragment() {
     private var _binding: FragmentRepositoryBinding? = null

@@ -1,11 +1,9 @@
 package org.sopt.androidassignment1
 
-import android.content.Intent
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
+import org.sopt.androidassignment1.adpater.HomeViewPagerAdapter
 import org.sopt.androidassignment1.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {

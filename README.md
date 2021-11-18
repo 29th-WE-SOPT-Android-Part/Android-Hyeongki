@@ -8,7 +8,9 @@
 
 [:two: Week 2](#two-week-2)
 
-[:three: Week3](#three-week-3)
+[:three: Week 3](#three-week-3)
+
+[:four: Week 4](#four-week-4)
 
 
 
@@ -1754,10 +1756,308 @@ ViewHolder의 onBind에서 Glide를 이용해 url에서 이미지를 불러와 �
 ### 🟢 성장한 내용
 
 1. 중첩 viewPager의 이벤트에 대해 관리하기 위해 뷰에서의 이벤트 흐름을 알게 되었다. (상위 뷰에서 하위 뷰로 dispatch)
-
 2. Glide를 이용해 uri에 접근하여 이미지를 불러오고, 모양을 다듬는 방법을 알게 되었다.
 3. Figma의 정보를 바탕으로 해상도에 맞게 적용할 수 있었다
 4. NavigationBar, TabLayout 등을 커스텀하면서 xml의 사용에 대한 감을 익히게 되었다.
 5. svg로 추출한 파일을 vector asset으로 추가해서 벡터 이미지로 사용하여 해상도 때문에 불편하지 않을 것 같다.
 6. 그동안 fontWeight를 설정하면 때로는 특정 값에서는 bold가 되지만 특정 값에서는 아무 변화가 없는 이유가 궁금했는데, fontFamily에 대해서 알게 되었다.
 7. 액티비티 간의 정보를 주고 받는 방법에 대해서 이해할 수 있었다.
+
+
+
+
+
+## :four: Week 4
+
+<img src="https://user-images.githubusercontent.com/37872134/141481007-280d8b6f-fca0-47b3-ae50-1e3557aaf658.gif"  width="180" height="320"/>
+
+
+
+### 🟢 LEVEL 1
+
+#### ◻ Postman으로 API 테스트
+
+
+
+<img src="https://user-images.githubusercontent.com/37872134/141455132-3b9452a3-5010-46d0-8bad-60fa77190d9f.PNG" width="800" height="500"/>
+
+/user/signup 경로에 POST하여 회원가입 API를 테스트한다.
+
+<img src="https://user-images.githubusercontent.com/37872134/141455140-507ec5bb-3a54-42ca-a886-ab28c22b2bc9.PNG" width="800" height="500"/>
+
+/user/login 경로에 POST하여 로그인 API를 테스트한다.
+
+
+
+#### ◻ 로그인 구현
+
+##### RequestLoginData
+
+```kotlin
+data class RequestLoginData(
+    @SerializedName("email")
+    val email : String,
+    val password : String
+)
+```
+
+
+
+##### ResponseLoginData
+
+```kotlin
+data class ResponseLoginData(
+    val status: Int,
+    val success: Boolean,
+    val message: String,
+    val data: Data
+) {
+    data class Data(
+        val id: Int,
+        val name: String,
+        val email: String
+    )
+}
+```
+
+
+
+##### LoginService
+
+```kotlin
+interface LoginService {
+    @Headers("Content-Type:application/json")
+    @POST("user/login")
+    fun postLogin(
+        @Body body: RequestLoginData
+    ) : Call<ResponseLoginData>
+}
+```
+
+
+
+##### ServiceCreator
+
+```kotlin
+object ServiceCreator {
+    private const val BASE_URL_SOPT = "https://asia-northeast3-we-sopt-29.cloudfunctions.net/api/"
+    private const val BASE_URL_GITHUB = "https://api.github.com/"
+
+    private val retrofitSopt : Retrofit = Retrofit
+        .Builder()
+        .baseUrl(BASE_URL_SOPT)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    private val retrofitGithub : Retrofit = Retrofit
+        .Builder()
+        .baseUrl(BASE_URL_GITHUB)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    val loginService : LoginService = retrofitSopt.create(LoginService::class.java)
+    val githubService: GithubService = retrofitGithub.create(GithubService::class.java)
+}
+```
+
+ServiceCreator에는 LEVEL2에서 진행한 github service도 함께 다루고 있다.
+
+data class를 이용해 Request나 Response로 오가는 JSON을 담을 데이터 형식을 정의하고, LoginService에서 HTTP 메소드 및 헤더, 파라미터, 바디 등 전달 방식을 결정한다.
+
+
+
+##### LoginActivity
+
+```kotlin
+    private fun initNetWork(){
+        val requestLoginData = RequestLoginData(
+            email = binding.etId.text.toString(),
+            password = binding.etPw.text.toString()
+        )
+
+        val call: Call<ResponseLoginData> = ServiceCreator.loginService.postLogin(requestLoginData)
+
+        call.enqueue(object: Callback<ResponseLoginData>{
+            override fun onResponse(
+                call: Call<ResponseLoginData>,
+                response: Response<ResponseLoginData>
+            ){
+              if(response.isSuccessful){
+                  val data = response.body()?.data
+
+                  Toast.makeText(this@LogInActivity, "${data?.email}님 반갑습니다!", Toast.LENGTH_SHORT).show()
+                  startActivity(Intent(this@LogInActivity, HomeActivity::class.java))
+              }else{
+                  Toast.makeText(this@LogInActivity, "로그인에 실패하였습니다.", Toast.LENGTH_SHORT).show()
+              }
+
+            }
+
+            override fun onFailure(call: Call<ResponseLoginData>, t: Throwable) {
+                Log.e("NetworkTest", "error:$t")
+            }
+        })
+    }
+```
+
+Login 버튼 onclick 리스너에 initNetWork() 메소드를 넣어준다.
+
+LoginService를 통해 Call을 생성하고, 비동기를 위해 queue에 넣는다.
+
+POST에 대한 response가 HTTP OK이면 로그인 성공하며 다음 액티비티를 실행한다.
+
+
+
+### 🟢 LEVEL 2
+
+#### ◻ GitHub 팔로우 리스트
+
+
+
+##### ResponseFollowerData
+
+```kotlin
+data class ResponseFollowerData(
+    @SerializedName("login")
+    val login: String,
+    @SerializedName("avatar_url")
+    val avatar_url: String,
+    @SerializedName("html_url")
+    val html_url: String,
+)
+
+```
+
+
+
+##### ResponseGithubUserData
+
+```kotlin
+data class ResponseGIthubUserData(
+    @SerializedName("login")
+    val login: String,
+    @SerializedName("avatar_url")
+    val avatar_url: String,
+    @SerializedName("html_url")
+    val html_url: String,
+    @SerializedName("bio")
+    val bio: String,
+    @SerializedName("public_repos")
+    val public_repos: Int,
+    @SerializedName("followers")
+    val followers: Int,
+    @SerializedName("following")
+    val following: Int
+)
+```
+
+
+
+##### GithubService
+
+```kotlin
+interface GithubService {
+    @Headers("Content-Type:application/json")
+    @GET("users/{login}/followers")
+    fun getFollowers(
+        @Path("login") login: String
+    ) : Call<List<ResponseFollowerData>>
+
+    @Headers("Content-Type:application/json")
+    @GET("users/{login}")
+    fun getUser(
+        @Path("login") login: String
+    ) : Call<ResponseGIthubUserData>
+}
+```
+
+
+
+##### FollowerFragment
+
+```kotlin
+    private fun initFollowerList(){
+        followerList.clear()
+        val callFollowers: Call<List<ResponseFollowerData>> = ServiceCreator.githubService.getFollowers("gimangi")
+
+        callFollowers.enqueue(object: Callback<List<ResponseFollowerData>>{
+            override fun onResponse(
+                call: Call<List<ResponseFollowerData>>,
+                response: Response<List<ResponseFollowerData>>
+            ) {
+                if(response.isSuccessful){
+                    val resbody = response.body()!!
+                    for(i in resbody.indices){
+                        val login = resbody[i].login
+                        val imgUrl = resbody[i].avatar_url
+
+                        // user bio (소개)를 불러오기 위한 call
+                        ServiceCreator
+                            .githubService
+                            .getUser(login)
+                            .enqueue(object: Callback<ResponseGIthubUserData>{
+                                override fun onResponse(
+                                    call: Call<ResponseGIthubUserData>,
+                                    res: Response<ResponseGIthubUserData>
+                                ) {
+
+                                    if(res.isSuccessful){
+                                        val newDat = TripleData(login, res.body()!!.bio, imgUrl)
+                                        followerList.add(newDat)
+                                    }
+                                    else{
+                                        Log.e("Network err", "response fail")
+                                    }
+                                }
+                                override fun onFailure(
+                                    call: Call<ResponseGIthubUserData>,
+                                    t: Throwable
+                                ) {
+                                    Log.e("Network err", "error:$t")
+                                }
+
+                            })
+                    }
+                }
+                else{
+                    Toast.makeText(context, "팔로워 리스트를 불러오지 못했습니다.", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<List<ResponseFollowerData>>, t: Throwable) {
+                Log.e("Network err", "error:$t")
+            }
+
+        })
+
+
+    }
+```
+
+FollowerFragment에 ViewAdapter로 list를 연결하기 전에 github API에서 불러온 데이터를 list에 삽입한다.
+
+단, Github API 중 /users/{login}/followers를 사용했을 때 follower의 소개 멘트(bio)가 response로 없기 때문에,  팔로워의 {login}을 이용해 
+
+/users/{login} API를 다시 한 번 호출해서 bio를 불러온다. 
+
+참고로, Github API에는 요청 IP에서 일정 횟수 이상의 요청을 보내면 서비스해주지 않는다.
+
+팔로워 API의 {login}은 나의 깃허브 아이디인 gimangi가 들어가서 다음과 같이 팔로워 목록을 보여준다.
+
+
+
+<img src="https://user-images.githubusercontent.com/37872134/141484274-f37ad42f-0ff0-4e15-8696-676fa6a83c97.PNG" widht="250" height="400"/>
+
+
+
+
+
+
+
+
+
+### 🟢 성장한 내용
+
+- 서버 통신을 처리하기 위한 data 구조를 만드는 것을 알게 되었다.
+- retrofit2를 이용하여 서버에 request를 보내고, response를 받는 방법에 대해 알게 되었다.
+- GSON이라는 라이브러리를 이용하여 자바에서 JSON을 데이터로 바꿀 수 있다는 것을 알게 되었다.

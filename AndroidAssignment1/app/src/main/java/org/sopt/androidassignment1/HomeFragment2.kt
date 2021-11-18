@@ -3,14 +3,10 @@ package org.sopt.androidassignment1
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
-import org.sopt.androidassignment1.databinding.FragmentGithubFollowerBinding
-import org.sopt.androidassignment1.databinding.FragmentGithubFollowingBinding
+import org.sopt.androidassignment1.adpater.HomeFragmentViewPagerAdapter
 import org.sopt.androidassignment1.databinding.FragmentHome2Binding
 
 /* HomeActivity -> Fragment <Home> */

@@ -1,9 +1,10 @@
-package org.sopt.androidassignment1
+package org.sopt.androidassignment1.adpater
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.sopt.androidassignment1.databinding.ItemListRepositoryBinding
+import org.sopt.androidassignment1.model.TripleData
 
 class RepositoryViewAdapter: RecyclerView.Adapter<RepositoryViewAdapter.RepositoryViewHolder>() {
     var dataList = mutableListOf<TripleData>()
@@ -11,14 +12,14 @@ class RepositoryViewAdapter: RecyclerView.Adapter<RepositoryViewAdapter.Reposito
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): RepositoryViewAdapter.RepositoryViewHolder {
+    ): RepositoryViewHolder {
         var binding = ItemListRepositoryBinding.inflate(
             LayoutInflater.from(parent.context), parent, false)
         return RepositoryViewHolder(binding)
     }
 
     override fun onBindViewHolder(
-        holder: RepositoryViewAdapter.RepositoryViewHolder,
+        holder: RepositoryViewHolder,
         position: Int
     ) {
         holder.onBind(dataList[position])

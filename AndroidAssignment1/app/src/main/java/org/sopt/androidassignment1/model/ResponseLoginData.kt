@@ -1,4 +1,4 @@
-package org.sopt.androidassignment1
+package org.sopt.androidassignment1.model
 
 data class ResponseLoginData(
     val status: Int,

@@ -24,7 +24,7 @@ class SignUpActivity : AppCompatActivity() {
                 Toast.makeText(this, "회원가입의 완료되었습니다", Toast.LENGTH_SHORT).show()
 
                 // register for activity result
-                val resultIntent = Intent(this, SignInActivity::class.java)
+                val resultIntent = Intent(this, LogInActivity::class.java)
                 resultIntent.putExtra("id", idInput.toString())
                 resultIntent.putExtra("pw", pwInput.toString())
                 setResult(RESULT_OK, resultIntent)
