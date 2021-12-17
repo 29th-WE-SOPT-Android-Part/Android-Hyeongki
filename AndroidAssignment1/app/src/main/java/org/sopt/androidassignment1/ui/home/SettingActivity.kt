@@ -21,22 +21,16 @@ class SettingActivity : AppCompatActivity() {
     }
 
     private fun initBtn() {
-        if (SOPTSharedPreferences.getAutoLogin(this)) {
-            
-        }
+        binding.cbtnAutoLogin.isChecked = SOPTSharedPreferences.getAutoLogin(this)
     }
 
     private fun initListener() {
 
         // 자동 로그인
         binding.cbtnAutoLogin.setOnClickListener {
-            if (binding.cbtnAutoLogin.isChecked) {
-
-            }
-            else {
-
-            }
+            SOPTSharedPreferences.setAutoLogin(this, binding.cbtnAutoLogin.isChecked)
         }
+
 
     }
 }
