@@ -43,6 +43,9 @@
         <entry key="app/src/main/res/layout/activity_detail.xml" value="0.4010416666666667" />
         <entry key="app/src/main/res/layout/activity_on_boarding.xml" value="0.4317708333333333" />
         <entry key="app/src/main/res/layout/fragment_home3.xml" value="0.4010416666666667" />
+        <entry key="app/src/main/res/layout/fragment_on_board1.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/fragment_on_board2.xml" value="0.34057971014492755" />
+        <entry key="app/src/main/res/layout/fragment_on_board3.xml" value="0.34057971014492755" />
       </map>
     </option>
   </component>

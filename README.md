@@ -12,6 +12,8 @@
 
 [:four: Week 4](#four-week-4)
 
+[:seven: Week7](#seven-week-7)
+
 
 
 ## :one: Week 1
@@ -2061,3 +2063,25 @@ FollowerFragment에 ViewAdapter로 list를 연결하기 전에 github API에서 
 - 서버 통신을 처리하기 위한 data 구조를 만드는 것을 알게 되었다.
 - retrofit2를 이용하여 서버에 request를 보내고, response를 받는 방법에 대해 알게 되었다.
 - GSON이라는 라이브러리를 이용하여 자바에서 JSON을 데이터로 바꿀 수 있다는 것을 알게 되었다.
+
+
+
+## :seven: Week 7
+
+<img src="https://user-images.githubusercontent.com/37872134/141481007-280d8b6f-fca0-47b3-ae50-1e3557aaf658.gif"  width="180" height="320"/>
+
+
+
+### 🟢 LEVEL 1
+
+#### ◻ 온보딩 화면 만들기
+
+
+
+#### ◻ SharedPreferences 활용하여 자동로그인/자동로그인 해제 구현
+
+
+
+#### ◻ 패키징 방식
+
+##### 
