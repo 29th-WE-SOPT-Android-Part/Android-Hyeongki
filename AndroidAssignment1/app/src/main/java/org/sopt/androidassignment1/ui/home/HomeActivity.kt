@@ -1,4 +1,4 @@
-package org.sopt.androidassignment1.ui
+package org.sopt.androidassignment1.ui.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

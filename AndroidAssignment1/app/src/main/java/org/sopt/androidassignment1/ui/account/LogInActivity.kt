@@ -1,4 +1,4 @@
-package org.sopt.androidassignment1.ui
+package org.sopt.androidassignment1.ui.account
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +12,7 @@ import org.sopt.androidassignment1.databinding.ActivityLogInBinding
 import org.sopt.androidassignment1.model.RequestLoginData
 import org.sopt.androidassignment1.model.ResponseLoginData
 import org.sopt.androidassignment1.service.ServiceCreator
+import org.sopt.androidassignment1.ui.home.HomeActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

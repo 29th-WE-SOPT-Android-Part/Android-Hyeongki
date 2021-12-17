@@ -1,4 +1,4 @@
-package org.sopt.androidassignment1.ui
+package org.sopt.androidassignment1.ui.home
 
 import android.content.Intent
 import android.os.Bundle

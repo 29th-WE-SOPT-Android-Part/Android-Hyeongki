@@ -1,4 +1,4 @@
-package org.sopt.androidassignment1.ui
+package org.sopt.androidassignment1.ui.detail
 
 import android.graphics.Color
 import android.os.Bundle

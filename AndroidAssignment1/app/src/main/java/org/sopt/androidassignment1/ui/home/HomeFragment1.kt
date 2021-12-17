@@ -1,4 +1,4 @@
-package org.sopt.androidassignment1.ui
+package org.sopt.androidassignment1.ui.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import org.sopt.androidassignment1.R
 import org.sopt.androidassignment1.databinding.FragmentHome1Binding
+import org.sopt.androidassignment1.ui.detail.FollowerFragment
+import org.sopt.androidassignment1.ui.detail.RepositoryFragment
 
 /* HomeActivity -> Fragment <Profile> */
 class HomeFragment1 : Fragment() {

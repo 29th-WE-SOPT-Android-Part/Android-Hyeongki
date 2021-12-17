@@ -1,4 +1,4 @@
-package org.sopt.androidassignment1.ui
+package org.sopt.androidassignment1.ui.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import com.google.android.material.tabs.TabLayoutMediator
 import org.sopt.androidassignment1.adpater.HomeFragmentViewPagerAdapter
 import org.sopt.androidassignment1.databinding.FragmentHome2Binding
+import org.sopt.androidassignment1.ui.detail.GithubFollowerFragment
+import org.sopt.androidassignment1.ui.detail.GithubFollowingFragment
 
 /* HomeActivity -> Fragment <Home> */
 class HomeFragment2 : Fragment() {
