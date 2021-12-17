@@ -1,5 +1,6 @@
 package org.sopt.androidassignment1.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -39,7 +40,8 @@ class HomeFragment1 : Fragment() {
 
     private fun initListener(){
         binding.btnSetting.setOnClickListener{
-            //setting button click listener
+            val intent = Intent(context, SettingActivity::class.java)
+            startActivity(intent)
         }
     }
 
