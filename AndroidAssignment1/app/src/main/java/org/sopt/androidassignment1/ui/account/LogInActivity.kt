@@ -8,11 +8,13 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import org.sopt.androidassignment1.data.SOPTSharedPreferences
 import org.sopt.androidassignment1.databinding.ActivityLogInBinding
 import org.sopt.androidassignment1.model.RequestLoginData
 import org.sopt.androidassignment1.model.ResponseLoginData
 import org.sopt.androidassignment1.service.ServiceCreator
 import org.sopt.androidassignment1.ui.home.HomeActivity
+import org.sopt.androidassignment1.util.shortToast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,6 +38,13 @@ class LogInActivity : AppCompatActivity() {
         }
 
 
+        initClickListener()
+        checkAutoLogin()
+
+        setContentView(binding.root)
+    }
+
+    private fun initClickListener() {
         binding.btnSignin.setOnClickListener{
             val idInput = binding.etId.text
             val pwInput = binding.etPw.text
@@ -54,10 +63,17 @@ class LogInActivity : AppCompatActivity() {
             getResultText.launch(intent)
 
         }
-        setContentView(binding.root)
     }
 
-    private fun initNetWork(){
+    private fun checkAutoLogin() {
+        if (SOPTSharedPreferences.getAutoLogin(this)) {
+            shortToast("자동 로그인 되었습니다")
+            startActivity(Intent(this@LogInActivity, HomeActivity::class.java))
+            finish()
+        }
+    }
+
+    private fun initNetWork() {
         val requestLoginData = RequestLoginData(
             email = binding.etId.text.toString(),
             password = binding.etPw.text.toString()
@@ -73,10 +89,10 @@ class LogInActivity : AppCompatActivity() {
               if(response.isSuccessful){
                   val data = response.body()?.data
 
-                  Toast.makeText(this@LogInActivity, "${data?.email}님 반갑습니다!", Toast.LENGTH_SHORT).show()
+                  shortToast("${data?.email}님 반갑습니다!")
                   startActivity(Intent(this@LogInActivity, HomeActivity::class.java))
               }else{
-                  Toast.makeText(this@LogInActivity, "로그인에 실패하였습니다.", Toast.LENGTH_SHORT).show()
+                  shortToast("로그인에 실패하였습니다.")
               }
 
             }
