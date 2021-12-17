@@ -12,7 +12,7 @@
 
 [:four: Week 4](#four-week-4)
 
-[:seven: Week7](#seven-week-7)
+[:seven: Week 7](#seven-week-7)
 
 
 
@@ -2068,7 +2068,7 @@ FollowerFragment에 ViewAdapter로 list를 연결하기 전에 github API에서 
 
 ## :seven: Week 7
 
-<img src="https://user-images.githubusercontent.com/37872134/141481007-280d8b6f-fca0-47b3-ae50-1e3557aaf658.gif"  width="180" height="320"/>
+<img src="https://user-images.githubusercontent.com/37872134/146587456-0acee3a1-336c-4763-ba13-983e0df34ef2.gif"  width="180" height="320"/>
 
 
 
@@ -2076,12 +2076,179 @@ FollowerFragment에 ViewAdapter로 list를 연결하기 전에 github API에서 
 
 #### ◻ 온보딩 화면 만들기
 
+##### nav_welcome
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_welcome"
+    app:startDestination="@id/onBoardFragment1">
+
+    <fragment
+        android:id="@+id/onBoardFragment1"
+        android:name="org.sopt.androidassignment1.ui.onboard.OnBoardFragment1"
+        android:label="fragment_on_board1"
+        tools:layout="@layout/fragment_on_board1" >
+        <action
+            android:id="@+id/action_onBoardFragment1_to_onBoardFragment2"
+            app:destination="@id/onBoardFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/onBoardFragment2"
+        android:name="org.sopt.androidassignment1.ui.onboard.OnBoardFragment2"
+        android:label="fragment_on_board2"
+        tools:layout="@layout/fragment_on_board2" >
+        <action
+            android:id="@+id/action_onBoardFragment2_to_onBoardFragment3"
+            app:destination="@id/onBoardFragment3" />
+    </fragment>
+    <fragment
+        android:id="@+id/onBoardFragment3"
+        android:name="org.sopt.androidassignment1.ui.onboard.OnBoardFragment3"
+        android:label="fragment_on_board3"
+        tools:layout="@layout/fragment_on_board3" />
+</navigation>
+```
+
+navigaion component를 이용하여 fragment를 전환한다.
+
 
 
 #### ◻ SharedPreferences 활용하여 자동로그인/자동로그인 해제 구현
+
+##### SOPTSharedPrefereces
+
+```kotlin
+package org.sopt.androidassignment1.data
+
+import android.content.Context
+
+object SOPTSharedPreferences {
+    private const val STORAGE_KEY = "USER_AUTH"
+    private const val AUTO_LOGIN = "AUTO_LOGIN"
+
+    fun getAutoLogin(context: Context): Boolean = getPreference(context).getBoolean(AUTO_LOGIN, false)
+
+
+    fun setAutoLogin(context: Context, value: Boolean) {
+        getPreference(context).edit()
+            .putBoolean(AUTO_LOGIN, value)
+            .apply()
+    }
+
+    fun removeAutoLogin(context: Context) {
+        getPreference(context).edit()
+            .remove(AUTO_LOGIN)
+            .apply()
+    }
+
+    fun clearStorage(context: Context) {
+        getPreference(context).edit()
+            .clear()
+            .apply()
+    }
+
+    private fun getPreference(context: Context) = context.getSharedPreferences(STORAGE_KEY, Context.MODE_PRIVATE)
+}
+```
+
+SharedPreferences를 담당하는 싱글톤 객체를 생성하여 관리한다.
+
+
+
+##### SettingActivity
+
+```kotlin
+package org.sopt.androidassignment1.ui.home
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import org.sopt.androidassignment1.data.SOPTSharedPreferences
+import org.sopt.androidassignment1.databinding.ActivitySettingBinding
+
+class SettingActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivitySettingBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        binding = ActivitySettingBinding.inflate(layoutInflater)
+
+        initBtn()
+        initListener()
+
+        setContentView(binding.root)
+    }
+
+    private fun initBtn() {
+        binding.cbtnAutoLogin.isChecked = SOPTSharedPreferences.getAutoLogin(this)
+    }
+
+    private fun initListener() {
+
+        // 자동 로그인
+        binding.cbtnAutoLogin.setOnClickListener {
+            SOPTSharedPreferences.setAutoLogin(this, binding.cbtnAutoLogin.isChecked)
+        }
+
+
+    }
+}
+```
+
+환경설정을 담당하는 액티비티에서 다음과 같이 SharedPreferences의 자동 로그인 값을 수정하고 불러온다.
+
+
+
+##### LoginActivity
+
+```kotlin
+private fun checkAutoLogin() {
+        if (SOPTSharedPreferences.getAutoLogin(this)) {
+            shortToast("자동 로그인 되었습니다")
+            startActivity(Intent(this@LogInActivity, HomeActivity::class.java))
+            finish()
+        }
+    }
+```
+
+로그인 액티비티에서 자동 로그인 설정이 켜져있는 것을 확인하면 로그인을 거치지 않고 다음 액티비티를 실행한다.
+
+현재 토큰을 이용한 로그인이 구현되지 않았기 때문에 임의로 로그인을 통과한 것이며, 로그인 성공 시 API로부터 토큰을 전달받으면 이를 저장해야 한다.
+
+그리고 자동 로그인 실행 시에도 건너뛰는 것이 아니라, 저장된 토큰을 불러와서 API에 접근하는 방식으로 해야 한다. (현재는 API에서 토큰을 요구하지 않는다)
 
 
 
 #### ◻ 패키징 방식
 
-##### 
+<img src="https://user-images.githubusercontent.com/37872134/146586975-aa51b500-76d3-4c8c-84ac-55f726d62e5b.png" widht="300" height="500"/>
+
+- adapter
+- config
+- data
+- model
+- service
+- ui
+  - account
+  - detail
+  - home
+  - onboard
+- util
+
+
+
+ui의 경우 연관 있는 단위로 한번 더 패키징하였다. (같은 그룹의 Fragment와 그 부모 액티비티 등)
+
+이외에는 기능을 기준으로 패키징하였다. 
+
+
+
+### 🟢 성장한 내용
+
+- Fragment 간 전환할 때 간단한 기능임에도 코드의 가독성이 떨어졌었는데, Navigation Component를 사용하면 코드의 가독성뿐만 아니라 시각적으로도 정리해주기 때문에 매우 편리했다.
+- 코틀린 확장 함수 개념을 공부했는데, 이를 활용해 Util 클래스를 만들어서 반복되는 코드를 줄일 수 있게 되었다. 자바를 사용하여 상속을 하게 된다면 원하지 않는 메소드들도 모두 구현해야 하지만, 확장 함수를 사용하면 단 한줄의 코드로 유용한 기능을 만들 수 있어서 놀라웠다.
+- 데이터를 로컬 저장소에 저장할 수 있는 방법들에 대해 알게 되었는데, SharedPrefereces 외에도 다양한 방법들이 존재하는 것을 알게 되었다. 또한 SharedPreferences를 사용할 때에도 이를 관리하는 싱글톤 객체를 이용하면 가독성이나 유지보수 측면에서도 매우 좋았다. 앞으로 똑같은 기능을 구현하더라도 이렇게 좋은 구조를 만드는 것을 고민해야겠다고 생각했다.
