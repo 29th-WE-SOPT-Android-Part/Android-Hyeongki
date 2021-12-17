@@ -13,6 +13,27 @@ class SettingActivity : AppCompatActivity() {
 
         binding = ActivitySettingBinding.inflate(layoutInflater)
 
+        initBtn()
+        initListener()
+
         setContentView(binding.root)
+    }
+
+    private fun initBtn() {
+
+    }
+
+    private fun initListener() {
+
+        // 자동 로그인
+        binding.cbtnAutoLogin.setOnClickListener {
+            if (binding.cbtnAutoLogin.isChecked) {
+
+            }
+            else {
+
+            }
+        }
+
     }
 }
