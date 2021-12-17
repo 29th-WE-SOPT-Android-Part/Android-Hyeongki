@@ -1,4 +1,4 @@
-package org.sopt.androidassignment1
+package org.sopt.androidassignment1.ui
 
 import android.graphics.Color.rgb
 import android.os.Bundle
@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.ItemTouchHelper
+import org.sopt.androidassignment1.config.CustomDecoration
+import org.sopt.androidassignment1.config.ItemTouchHelperCallback
 import org.sopt.androidassignment1.adpater.FollowerViewAdapter
 import org.sopt.androidassignment1.databinding.FragmentFollowerBinding
 import org.sopt.androidassignment1.model.ResponseFollowerData

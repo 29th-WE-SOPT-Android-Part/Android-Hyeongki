@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#DFDFDF"
-    tools:context=".GithubFollowerFragment">
+    tools:context=".ui.GithubFollowerFragment">
 
     <TextView
         android:id="@+id/tv_ready_not"

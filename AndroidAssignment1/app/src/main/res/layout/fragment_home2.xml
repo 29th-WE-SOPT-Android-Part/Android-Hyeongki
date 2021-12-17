@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment2">
+    tools:context=".ui.HomeFragment2">
 
     <ImageView
         android:id="@+id/iv_title"
@@ -46,7 +46,7 @@
         >
     </com.google.android.material.tabs.TabLayout>
 
-    <org.sopt.androidassignment1.NestedScrollableHost
+    <org.sopt.androidassignment1.config.NestedScrollableHost
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@+id/tl_home"
@@ -57,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-    </org.sopt.androidassignment1.NestedScrollableHost>
+    </org.sopt.androidassignment1.config.NestedScrollableHost>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

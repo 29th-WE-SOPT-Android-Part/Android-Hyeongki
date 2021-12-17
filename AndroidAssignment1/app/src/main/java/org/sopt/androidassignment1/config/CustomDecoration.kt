@@ -1,4 +1,4 @@
-package org.sopt.androidassignment1
+package org.sopt.androidassignment1.config
 
 import android.graphics.Canvas
 import android.graphics.Paint

@@ -1,4 +1,4 @@
-package org.sopt.androidassignment1
+package org.sopt.androidassignment1.ui
 
 import android.graphics.Color
 import android.os.Bundle
@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import org.sopt.androidassignment1.config.CustomDecoration
 import org.sopt.androidassignment1.adpater.RepositoryViewAdapter
 import org.sopt.androidassignment1.databinding.FragmentRepositoryBinding
 import org.sopt.androidassignment1.model.TripleData
