@@ -6,29 +6,27 @@ import android.content.SharedPreferences
 object SOPTSharedPreferences {
     private const val STORAGE_KEY = "USER_AUTH"
     private const val AUTO_LOGIN = "AUTO_LOGIN"
-    private lateinit var preferences: SharedPreferences
 
-    fun init(context: Context) {
-        preferences = context.getSharedPreferences(STORAGE_KEY, Context.MODE_PRIVATE)
-    }
+    fun getAutoLogin(context: Context): Boolean = getPreference(context).getBoolean(AUTO_LOGIN, false)
 
-    fun getAutoLogin(): Boolean = preferences.getBoolean(AUTO_LOGIN, false)
 
-    fun setAutoLogin(value: Boolean) {
-        preferences.edit()
+    fun setAutoLogin(context: Context, value: Boolean) {
+        getPreference(context).edit()
             .putBoolean(AUTO_LOGIN, value)
             .apply()
     }
 
-    fun removeAutoLogin() {
-        preferences.edit()
+    fun removeAutoLogin(context: Context) {
+        getPreference(context).edit()
             .remove(AUTO_LOGIN)
             .apply()
     }
 
-    fun clearStorage() {
-        preferences.edit()
+    fun clearStorage(context: Context) {
+        getPreference(context).edit()
             .clear()
             .apply()
     }
+
+    private fun getPreference(context: Context) = context.getSharedPreferences(STORAGE_KEY, Context.MODE_PRIVATE)
 }
