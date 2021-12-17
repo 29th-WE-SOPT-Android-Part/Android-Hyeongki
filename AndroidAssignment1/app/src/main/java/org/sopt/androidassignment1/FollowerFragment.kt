@@ -47,6 +47,8 @@ class FollowerFragment : Fragment() {
        // followerList.clear()
         val callFollowers: Call<List<ResponseFollowerData>> = ServiceCreator.githubService.getFollowers("gimangi")
 
+
+
         callFollowers.enqueue(object: Callback<List<ResponseFollowerData>>{
             override fun onResponse(
                 call: Call<List<ResponseFollowerData>>,
@@ -69,7 +71,11 @@ class FollowerFragment : Fragment() {
                                 ) {
 
                                     if(res.isSuccessful){
-                                        val newDat = TripleData(login, res.body()!!.bio, imgUrl)
+                                        var newDat: TripleData
+                                        if (res != null && res.body()!!.bio != null)
+                                            newDat = TripleData(login, res.body()!!.bio, imgUrl)
+                                        else
+                                            newDat = TripleData(login, "", imgUrl)
                                         followerList.add(newDat)
                                     }
                                     else{
@@ -84,6 +90,7 @@ class FollowerFragment : Fragment() {
                                 }
 
                             })
+
                     }
                 }
                 else{
@@ -96,6 +103,8 @@ class FollowerFragment : Fragment() {
             }
 
         })
+
+
 
 
     }
