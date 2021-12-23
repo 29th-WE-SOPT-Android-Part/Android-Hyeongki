@@ -1,4 +1,4 @@
-package org.sopt.androidassignment1
+package org.sopt.androidassignment1.config
 
 /*
  * Copyright 2019 The Android Open Source Project

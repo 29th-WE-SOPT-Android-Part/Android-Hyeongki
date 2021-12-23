@@ -1,4 +1,4 @@
-package org.sopt.androidassignment1
+package org.sopt.androidassignment1.ui.account
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

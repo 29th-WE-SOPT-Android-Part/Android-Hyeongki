@@ -1,14 +1,16 @@
-package org.sopt.androidassignment1
+package org.sopt.androidassignment1.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
-import com.google.android.material.tabs.TabLayoutMediator
-import org.sopt.androidassignment1.databinding.FragmentFollowerBinding
+import org.sopt.androidassignment1.R
 import org.sopt.androidassignment1.databinding.FragmentHome1Binding
+import org.sopt.androidassignment1.ui.detail.FollowerFragment
+import org.sopt.androidassignment1.ui.detail.RepositoryFragment
 
 /* HomeActivity -> Fragment <Profile> */
 class HomeFragment1 : Fragment() {
@@ -38,7 +40,8 @@ class HomeFragment1 : Fragment() {
 
     private fun initListener(){
         binding.btnSetting.setOnClickListener{
-            //setting button click listener
+            val intent = Intent(context, SettingActivity::class.java)
+            startActivity(intent)
         }
     }
 

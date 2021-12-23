@@ -1,4 +1,4 @@
-package org.sopt.androidassignment1
+package org.sopt.androidassignment1.ui.detail
 
 import android.graphics.Color.rgb
 import android.os.Bundle
@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.ItemTouchHelper
+import org.sopt.androidassignment1.config.CustomDecoration
+import org.sopt.androidassignment1.config.ItemTouchHelperCallback
 import org.sopt.androidassignment1.adpater.FollowerViewAdapter
 import org.sopt.androidassignment1.databinding.FragmentFollowerBinding
 import org.sopt.androidassignment1.model.ResponseFollowerData
@@ -47,6 +49,8 @@ class FollowerFragment : Fragment() {
        // followerList.clear()
         val callFollowers: Call<List<ResponseFollowerData>> = ServiceCreator.githubService.getFollowers("gimangi")
 
+
+
         callFollowers.enqueue(object: Callback<List<ResponseFollowerData>>{
             override fun onResponse(
                 call: Call<List<ResponseFollowerData>>,
@@ -69,7 +73,11 @@ class FollowerFragment : Fragment() {
                                 ) {
 
                                     if(res.isSuccessful){
-                                        val newDat = TripleData(login, res.body()!!.bio, imgUrl)
+                                        var newDat: TripleData
+                                        if (res != null && res.body()!!.bio != null)
+                                            newDat = TripleData(login, res.body()!!.bio, imgUrl)
+                                        else
+                                            newDat = TripleData(login, "", imgUrl)
                                         followerList.add(newDat)
                                     }
                                     else{
@@ -84,6 +92,7 @@ class FollowerFragment : Fragment() {
                                 }
 
                             })
+
                     }
                 }
                 else{
@@ -96,6 +105,8 @@ class FollowerFragment : Fragment() {
             }
 
         })
+
+
 
 
     }

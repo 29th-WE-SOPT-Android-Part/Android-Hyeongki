@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import org.sopt.androidassignment1.DetailActivity
-import org.sopt.androidassignment1.ItemTouchHelperListener
+import org.sopt.androidassignment1.ui.detail.DetailActivity
+import org.sopt.androidassignment1.config.ItemTouchHelperListener
 import org.sopt.androidassignment1.databinding.ItemListFollowerBinding
 import org.sopt.androidassignment1.model.TripleData
 
