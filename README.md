@@ -2223,7 +2223,9 @@ private fun checkAutoLogin() {
 
 
 
-#### ◻ 패키징 방식
+#### ◻ 패키징 방식 및 Util 클래스
+
+##### 패키징 방식
 
 <img src="https://user-images.githubusercontent.com/37872134/146586975-aa51b500-76d3-4c8c-84ac-55f726d62e5b.png" widht="300" height="500"/>
 
@@ -2239,11 +2241,42 @@ private fun checkAutoLogin() {
   - onboard
 - util
 
-
-
 ui의 경우 연관 있는 단위로 한번 더 패키징하였다. (같은 그룹의 Fragment와 그 부모 액티비티 등)
 
 이외에는 기능을 기준으로 패키징하였다. 
+
+
+
+##### Util 클래스
+
+- 짧은 시간동안 표시되는 토스트를 간편하게 생성할 수 있는 `shortToast` 확장함수를 가진 `ToastUtil`클래스
+
+  ```kotlin
+  fun Context.shortToast(message: String) {
+      Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+  }
+  
+  object ToastUtil {
+  }
+  ```
+
+  
+
+- RecyclerView의 Decorator 등에서 dp를 px로 변환이 필요할 때 사용할 `px`확장함수를 가진 ViewUtil 클래스
+
+  ```kotlin
+  @Px
+  fun View.px(dp: Int) = (dp * resources.displayMetrics.density).roundToInt()
+  
+  object ViewUtil {
+  }
+  ```
+
+
+
+두 유틸 클래스 모두 싱글톤으로 만들었지만 아직 확장함수 한 개 외에는 다른 기능이 없기 때문에 지금은 굳이 이렇게 구성할 필요가 없다.
+
+하지만 이후 프로젝트 규모가 크게 확장된다면 다양한 기능을 담은 유용한 클래스가 될 것이라고 생각한다.
 
 
 
